@@ -2,7 +2,7 @@
 	include 'constants.php';
 	spl_autoload_register('classLoader');
 	session_start();
-	
+
 	try{
 		$portal = new PortalFront("localhost", "root", "", "aplikacjaobiektowo");
 		$action = 'showMain';
@@ -190,8 +190,8 @@
 	}
 	
 	function classLoader($nazwa){
-		if(file_exists("klasy/$nazwa.php")){
-			require_once("klasy/$nazwa.php");
+		if(file_exists("class/$nazwa.php")){
+			require_once("class/$nazwa.php");
 		} else {
 			throw new Exception("Brak pliku z definicją klasy.");
 		}
