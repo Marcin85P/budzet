@@ -21,26 +21,22 @@
 			$_SESSION['fr_nick'] = $nick;
 			
 			if ((strlen($nick)<3) || (strlen($nick)>20)) {
-				$_SESSION['e_nick'] = "Login musi posiadać od 3 do 20 znaków!";
-				return false;
+				return FAILED_LENGTH;
 			}
 			
 			if (ctype_alnum($nick) == false || preg_match('@[ęóąśłżźćńĘÓĄŚŁŻŹĆŃ]@', $nick)) {
-				$_SESSION['e_nick'] = "Login może składać się tylko z liter i cyfr (bez polskich znaków)";
-				return false;
+				return FAILED_LETTER;
 			}
 		
 			$pass1 = $_POST['pass1'];
 			$pass2 = $_POST['pass2'];
 			
 			if ((strlen($pass1) < 6) || (strlen($pass1) > 20)) {
-				$_SESSION['e_pass'] = "Hasło musi posiadać od 6 do 20 znaków!";
-				return false;
+				return FAILED_PASSWORD_LENGTH;
 			}
 			
 			if ($pass1 != $pass2) {
-				$_SESSION['e_pass2'] = "Podane hasła nie są identyczne!";
-				return false;
+				return FAILED_PASSWORD_SAME;
 			}
 			
 			$password = $pass1;
@@ -59,8 +55,7 @@
 				$how_many_found_nick = $result->num_rows;
 				
 				if ($how_many_found_nick > 0) {
-					$_SESSION['e_nick'] = "Istnieje już użytkownik o takim nicku! Wybierz inny.";
-					return false;
+					return ACTION_DUPLICATE;
 				}
 					
 				if ($result = $this->dbo->query("INSERT INTO users VALUES (NULL, '$nick', '$pass_hash')")) {

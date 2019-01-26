@@ -31,8 +31,7 @@
 						
 					case ACTION_FAILED :
 					
-					case FORM_DATA_MISSING :
-						$_SESSION['login'] = $_POST["log"];
+					case FORM_DATA_MISSING:
 						$portal->setMessage('Błędna nazwa lub hasło użytkownika');
 						break;
 						
@@ -43,17 +42,44 @@
 			break;
 			
 			case 'registerUser':
-				switch($portal->registerUser()):
+				switch($portal->registerUser()){
 					case ACTION_OK:
 						$_SESSION['successful_registration'] = true;
 						$portal->setMessage('Rejestracja przebiegła pomyślnie, możesz się już zalogować na swoje konto!');
 						header('Location:index.php?action=showLoginForm');
 					return;
 					
+					case ACTION_FAILED:
+					
+					case FAILED_LENGTH:
+						$portal->setMessage('Login musi posiadać od 3 do 20 znaków');
+						$_SESSION['loginCheck'] = $portal->getMessage();
+					break;
+					
+					case FAILED_LETTER:
+						$portal->setMessage("Login może składać się tylko z liter i cyfr (bez polskich znaków)");
+						$_SESSION['loginCheck'] = $portal->getMessage();
+					break;
+					
+					case FAILED_PASSWORD_LENGTH:
+						$portal->setMessage("Hasło musi posiadać od 6 do 20 znaków");
+						$_SESSION['passwordLength'] = $portal->getMessage();
+					break;
+					
+					case FAILED_PASSWORD_SAME:
+						$portal->setMessage("Podane hasła nie są identyczne");
+						$_SESSION['passwordSame'] = $portal->getMessage();
+					break;
+					
+					case ACTION_DUPLICATE:
+						$portal->setMessage("Istnieje już użytkownik o takim nicku");
+						$_SESSION['loginCheck'] = $portal->getMessage();
+					break;
+					
 					case SERVER_ERROR:
 					default:
 						$portal->setMessage('Błąd serwera!');
-				endswitch;
+				}
 			header('Location:index.php?action=showRegistrationForm');
 			break;
 			

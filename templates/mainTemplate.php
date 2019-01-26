@@ -20,122 +20,73 @@ if(!isset($portal)) die();
 			
 	</head>
 	
-<body>
-	<div class="conteinerStyle">
-	
-		<div class="logo">
-			<h1>Budżet osobisty</h1>
-		</div>
-					
-					<?php
-						switch($action):
-							case 'showLoginForm' :
-								include 'loginForm.php';
-							break;
-							
-							case 'showRegistrationForm':
-								$portal->showRegistrationForm();
-							break;
-							
-							case 'showIncomes':
-								$_SESSION['date'] = date("Y-m-d");
-								$portal->loadCategoryIncomes();
-								include 'templates/incomes.php';
-							break;
-							
-							case 'showExpenses':
-								$_SESSION['date'] = date("Y-m-d");
-								$portal->loadCategoryExpenses();
-								include 'templates/expenses.php';
-							break;
-							
-							case 'showBalance':
-								include 'templates/balanceView.php';
-							break;
-							
-							case 'customView':
-								include 'templates/custom.php';
-							break;
-							
-							case 'settingsView':
-								include 'templates/settings.php';
-							break;
-							
-							case 'settingsCategory':
-								include 'templates/settingsCategoryIncomes.php';
-							break;
-							
-							case 'settingsCategoryExp':
-								include 'templates/settingsCategoryExpenses.php';
-							break;
-							
-							case 'showMain':
-							default:
-								include 'templates/innerContentDiv.php';
-						endswitch;
-					?>
-		
-	</div>
-	
-	<footer id="footer">
+	<body>
 
-		<div class="container">
+		<div class="conteinerStyle">
 		
-			<div class="row">
-			
-				<div class="col-4">
-					<div class="fb">
-						<i class="icon-facebook"></i> 
-					</div>
-				</div>
-				
-				<div class="col-4">	
-					<div class="yt">
-						<i class="icon-youtube"></i> 
-					</div>
-				</div>
-				
-				<div class="col-4">
-					<div class="tw">
-						<i class="icon-twitter"></i> 
-					</div>
-				</div>
-				
+			<div class="logo">			
+				<i class="icon-bank"></i>
+				MyPersonalBudget
 			</div>
-			
+						
+						<?php
+							switch($action):
+								case 'showLoginForm' :
+									include 'loginForm.php';
+								break;
+								
+								case 'showRegistrationForm':
+									$portal->showRegistrationForm();
+								break;
+								
+								case 'showIncomes':
+									$_SESSION['date'] = date("Y-m-d");
+									$portal->loadCategoryIncomes();
+									include 'templates/incomes.php';
+								break;
+								
+								case 'showExpenses':
+									$_SESSION['date'] = date("Y-m-d");
+									$portal->loadCategoryExpenses();
+									include 'templates/expenses.php';
+								break;
+								
+								case 'showBalance':
+									include 'templates/balanceView.php';
+								break;
+								
+								case 'customView':
+									include 'templates/custom.php';
+								break;
+								
+								case 'settingsView':
+									include 'templates/settings.php';
+								break;
+								
+								case 'settingsCategory':
+									include 'templates/settingsCategoryIncomes.php';
+								break;
+								
+								case 'settingsCategoryExp':
+									include 'templates/settingsCategoryExpenses.php';
+								break;
+								
+								case 'showMain':
+								default:
+									include 'templates/innerContentDiv.php';
+							endswitch;
+						?>
 		</div>
-	
-		<div class="info">	
-			Wszelkie prawa zastrzeżone &copy <?php echo date('Y') ?>
-		</div>
+		
+		<footer id="footer">
+		
+			<div class="info">	
+				Wszelkie prawa zastrzeżone &copy <?php echo date('Y') ?>
+			</div>
 
-	</footer>
-	
-		<script src="jquery-3.3.1.min.js"></script>
-	
-	<script>
+		</footer>
 
-	$(document).ready(function() {
-		var NavY = $('.D-menu').offset().top;
-	 
-	var stickyNav = function(){
-		var ScrollY = $(window).scrollTop();
-			  
-		if (ScrollY > NavY) { 
-			$('.D-menu').addClass('sticky');
-		} else {
-			$('.D-menu').removeClass('sticky'); 
-		}
-	};
-	 
-	stickyNav();
-	 
-		$(window).scroll(function() {
-			stickyNav();
-		});
-	});
-	
-	</script>
+	<script src="jquery-3.3.1.min.js"></script>
 	
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	
@@ -143,6 +94,6 @@ if(!isset($portal)) die();
 
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 
-</body>
+	</body>
 
 </html>

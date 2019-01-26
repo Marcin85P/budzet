@@ -51,6 +51,8 @@
 			
 			$log = $_POST["log"];
 			$pass = $_POST["loginpassword"];
+			
+			$_SESSION['login'] = $log;
 				
 			$log = htmlentities($log, ENT_QUOTES, "UTF-8");
 			
