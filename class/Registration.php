@@ -20,7 +20,7 @@
 			
 			$_SESSION['fr_nick'] = $nick;
 			
-			if ((strlen($nick)<3) || (strlen($nick)>20)) {
+			if ((strlen($nick)<3) || (strlen($nick)>15)) {
 				return FAILED_LENGTH;
 			}
 			

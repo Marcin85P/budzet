@@ -1,7 +1,5 @@
 <?php if(!isset($portal)) die(); ?>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
-
 <form action="index.php?action=login" method="post">
 			
 	<div class="container">
@@ -17,21 +15,17 @@
 			</div>
 			
 			<div class="col-12 col-md-6">
-			
 				<div class="window">
-				
 					<?php
 						if(isset($_SESSION['successful_registration'])){
-							echo"<div class='reg'>
-										<span style='color:green; font-size:14px'>$komunikat</span>
+							echo"<div class='inf'>
+										<span font-size:13px'>$komunikat</span>
 									</div>";
 						}
 					?>
-
 					<p class="word">LOGOWANIE</p>
 					
 					<div class="fontel"><i class="icon-user"></i></div>
-
 					<input type="text" name="log" placeholder="Login" 
 					value=
 						"<?php
@@ -64,7 +58,6 @@
 					</div>
 								
 				</div>
-				
 			</div>
 			
 		</div>

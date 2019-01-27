@@ -52,7 +52,7 @@
 					case ACTION_FAILED:
 					
 					case FAILED_LENGTH:
-						$portal->setMessage('Login musi posiadać od 3 do 20 znaków');
+						$portal->setMessage('Login musi posiadać od 3 do 15 znaków');
 						$_SESSION['loginCheck'] = $portal->getMessage();
 					break;
 					

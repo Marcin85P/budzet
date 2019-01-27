@@ -1,5 +1,5 @@
 <?php if(!$this) die();?>
-<link rel="stylesheet" href="style.css" type="text/css" />
+
 <form method="post" action="index.php?action=registerUser">
 		
 	<div class="container">
