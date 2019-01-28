@@ -102,9 +102,7 @@ nav li:hover a {
 
 nav .menu-icon:hover{
 	color:#fff;
-	border-left:1px solid #4f525f;
-	border-right:1px solid #4f525f;
-	margin: 0 30px;
+	border-bottom:2px solid #fff;
 }
 
 @media (max-width: 1080px) {
@@ -140,6 +138,8 @@ nav .menu-icon:hover{
 	
 	nav .menu-icon {
 		display: inline-block;
+		border-left:1px solid #4f525f;
+		border-right:1px solid #4f525f;
 	}
 	
 	#menu ul{
