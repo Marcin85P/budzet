@@ -1,0 +1,178 @@
+.colorMenu
+{
+	background-color:#2e303d;
+	opacity:0.6;
+	transition: opacity 0.1s;
+}
+
+.loginM
+{
+	float:left;
+	width: 20%;
+	overflow: hidden;
+	position: relative;
+	border-top:1px solid #4f525f;
+	border-left:1px solid #4f525f;
+	border-bottom:1px solid #2e303d;
+	color:#fff;
+	padding:8px;
+	padding-bottom:7px;
+	font-size:13px;
+}
+
+#menu {
+	float: left;
+	width: 80%;
+	overflow: hidden;
+	position: relative;
+	border-top:1px solid #4f525f;
+}
+#menu ul {
+	clear: left;
+	float: left;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	left:50%;
+	text-align: center;
+}
+
+#menu ul li {
+	display: block;
+	float: left;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	right:50%;
+}
+
+#menu ul li a {
+	font-size:12px;
+	width:160px;
+    display: block;
+	padding: 7px 10px;
+	color: #fff;
+	text-decoration: none;
+	line-height: 20px;
+	border-left:1px solid #4f525f;
+	height:35px;
+}
+
+.colorMenu:hover
+{
+	opacity:0.8;
+}
+
+#menu ul li a.home{
+	width:50px;
+	border-left:1px solid #4f525f;
+}
+
+#menu ul li a.out{
+	border-right:1px solid #4f525f;
+}
+
+#menu ul li a:hover {
+	font-size:14px;
+	opacity:1;
+	transition-duration:60ms;
+	border-bottom:2px solid #fff;
+}
+
+/*hamburger menu*/
+
+nav li a, nav .menu-icon {
+	color: #fff;
+	text-decoration: none;
+	float:left;
+}
+ 
+nav .menu-icon {
+	display: none;
+	font-size:24px;
+	margin: 0 31px;
+	padding-left:10px;
+	padding-right:10px;
+	height:35px;
+}
+ 
+nav li:hover a {
+	color: #fff;
+}
+
+nav .menu-icon:hover{
+	color:#fff;
+	border-left:1px solid #4f525f;
+	border-right:1px solid #4f525f;
+	margin: 0 30px;
+}
+
+@media (max-width: 1080px) {
+	nav ul {
+		height:0;
+		transition-duration:250ms;
+		width:100%;
+		border-top:1px solid #4f525f;
+	}
+	
+	nav ul li {
+		clear:both;
+		display:block;
+		text-align:left;
+	}
+	
+	#menu ul li a.home{
+		border:none;
+		width:200px;
+	}
+	
+	#menu ul li a{
+		width:200px;
+		height:35px;
+		padding-left:39px;
+	}
+	
+	#menu ul li a:hover{
+		border:none;
+		border-left:3px solid #fff;
+		padding-left:36px;
+	}
+	
+	nav .menu-icon {
+		display: inline-block;
+	}
+	
+	#menu ul{
+		left:0%;
+	}
+	
+	#menu ul li{
+		right:0%;
+	}
+	
+	#menu{
+		width:100%;
+	}
+	
+	.loginM{
+		display:none;
+	}
+	
+	.colorMenu:hover{
+		opacity:0.8;
+	}
+	
+	nav ul.show{
+		height:210px;
+	}
+	
+	#menu ul li a.home:after{
+		content:' Strona główna';
+	}
+	
+	#menu ul li a.out{
+		border-right:0;
+	}
+}
