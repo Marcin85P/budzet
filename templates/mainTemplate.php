@@ -91,6 +91,8 @@ if(!isset($portal)) die();
 			?>
 		</div>
 		
+		<div class="static"></div>
+		
 		<footer id="footer">
 		
 			<div class="info">	
