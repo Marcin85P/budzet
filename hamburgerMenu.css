@@ -127,13 +127,13 @@ nav .menu-icon:hover{
 	#menu ul li a{
 		width:200px;
 		height:35px;
-		padding-left:39px;
+		padding-left:30px;
 	}
 	
 	#menu ul li a:hover{
 		border:none;
 		border-left:3px solid #fff;
-		padding-left:36px;
+		padding-left:28px;
 	}
 	
 	nav .menu-icon {

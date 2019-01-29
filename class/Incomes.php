@@ -58,7 +58,7 @@ class Incomes{
 			$date = $_POST['date'];
 			$_SESSION['date'] = $date;
 			
-			$category = $_POST['category'];
+			$category = $_POST['choiceIncomes'];
 			$_SESSION['category'] = $category;
 			
 			$comment = $_POST['comment'];

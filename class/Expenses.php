@@ -61,7 +61,7 @@
 			$payment_methods = $_POST['payment_methods'];
 			$_SESSION['payment_methods'] = $payment_methods;
 			
-			$category = $_POST['category'];
+			$category = $_POST['choiceExpenses'];
 			$_SESSION['category_exp'] = $category;
 			
 			$comment = $_POST['comment'];

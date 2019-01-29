@@ -5,151 +5,84 @@
 		header('Location:index.php?action=showLoginForm');
 	}
 ?>
-		
-		<link rel="stylesheet" href="main.css" type="text/css" />
-		<header>
-			<nav class="page-navigation clearfix">
+<div class="container">
+	<div class="row">
+		<div class="windowAdd">
+			<h2 class="word" style="font-size:14px;">DODAJ PRZYCHÓD</h2>
 			
-				<label class="navigation-toggle" for="input-toggle">
-					<span></span>
-					<span></span>
-					<span></span>
-				</label>
+			<form action="index.php?action=addIncomes" method="post">
 			
-				<input type="checkbox" id="input-toggle">
-				
-				<ul class="menu">
-					<li><a href='index.php?action=showIncomes'>Dodaj przychód</a></li>
-					<li><a href='index.php?action=showExpenses'>Dodaj wydatek</a></li>
-					<li><a href='index.php?action=tableView'>Przegląd bilansu</a></li>
-					<li><a href='index.php?action=settingsView'>Ustawienia</a></li>
-					<li><a href='index.php?action=logout' class="logout">Wyloguj się</a></li>	
-				</ul>
-					
-			</nav>
+				<div class="fontel"><i class="icon-dollar"></i></div>
+				<input type="text" name="amount" placeholder="Kwota"
+				value=
+				"<?php
+					if (isset($_SESSION['amount'])) {
+						echo $_SESSION['amount'];
+						unset($_SESSION['amount']);
+					}
+				 ?>"/>
 			
-		</header>
-	
-		<main>
-		
-			<article>
-			
-				<div class="article">
-				
-				<div class="container">
-				
-					<h2 class="title">Dodaj przychód</h2>
-					
-					<form action="index.php?action=addIncomes" method="post">
-						<div id="window">
+				<div class="err_log">
+				<?php
+					if(isset($_SESSION['e_amount'])) {
+						echo $_SESSION['e_amount'];
+						unset($_SESSION['e_amount']);
+					}
+				?></div>					
 						
-							<div class="row">
-							
-								<div class="col-sm-12 col-md-4">
-										<label>Kwota (PLN):</label>
-								</div>
-								
-								<div class="col-sm-12 col-md-8">
-										<input type="amount" name="amount" 
-										value=
-											"<?php
-												if (isset($_SESSION['amount'])) {
-													echo $_SESSION['amount'];
-													unset($_SESSION['amount']);
-												}
-											 ?>"/>
-								
-									<div class="err_log">
-										<?php
-											if(isset($_SESSION['e_amount'])) {
-												echo $_SESSION['e_amount'];
-												unset($_SESSION['e_amount']);
-											}
-										?>
-									</div>
-								</div>
-										
-										
-								<div class="col-sm-12 col-md-4">
-											<label>Data:</label>
-								</div>
-								
-								<div class="col-sm-12 col-md-8">
-									<input type="date" name="date"
-									value=
-										"<?php
-											if (isset($_SESSION['date'])) {
-												echo $_SESSION['date'];
-												unset($_SESSION['date']);
-											}
-										 ?>"/>
-										
-										<div class="err_log">
-										<?php
-											if(isset($_SESSION['e_date'])) {
-												echo $_SESSION['e_date'];
-												unset($_SESSION['e_date']);
-											}
-										?>
-										</div>
-								</div>
-										
-								<div class="col-sm-12 col-md-4">
-											<label>Kategoria:</label>
-								</div>
-								
-								<div class="col-sm-12 col-md-8">
-									<input type="text" list="category" name="category"
-									value=
-										"<?php
-											if (isset($_SESSION['category'])) {
-												echo $_SESSION['category'];
-												unset($_SESSION['category']);
-											}
-										 ?>"/>
-										 
-										 <datalist id="category"> 
-											<?php 
-											$arrayCategory = $_SESSION['arrayCategoryIncomes'];
-											
-											for($i = 0; $i < count($arrayCategory); $i++){
-												echo "<option value='$arrayCategory[$i]'>";
-											}
-											unset($_SESSION['arrayCategoryIncomes']);
-											?>
-										 </datalist>
-										 
-										 <div class="err_log">
-										<?php
-											if(isset($_SESSION['e_category'])) {
-												echo $_SESSION['e_category'];
-												unset($_SESSION['e_category']);
-											}
-										?>
-										</div>
-										 
-								</div>
-								
-								<div class="col-sm-12 col-md-4">						
-											<label>Komentarz:</label>
-								</div>
-								
-								<div class="col-md-12 col-lg-8">
-											<textarea name="comment" placeholder="Wprowadź komentarz..."
-											></textarea>	
-								</div>
-										
-										<div style="clear: both;"></div>
-							</div>
-						
-						</div>
-								<input type="submit" value="Dodaj">								
-								<a href="index.php?action=showMain"><input type="button" value="Anuluj"></a>
-								
-					</form>
+				<div class="fontel"><i class="icon-calendar"></i></div>
+				<input type="date" name="date"
+				value=
+				"<?php
+					if (isset($_SESSION['date'])) {
+						echo $_SESSION['date'];
+						unset($_SESSION['date']);
+					}
+				 ?>"/>
+				
+				<div class="err_log">
+				<?php
+					if(isset($_SESSION['e_date'])) {
+						echo $_SESSION['e_date'];
+						unset($_SESSION['e_date']);
+					}
+				?>
+				</div>
+
+				<div class="fontel"><i class="icon-edit"></i></div>										 
+				<select class="category" name="choiceIncomes"> 
+				<?php 
+					$arrayCategory = $_SESSION['arrayCategoryIncomes'];
+
+					echo "<option value='empty' disabled selected hidden>Kategoria</option>";
+
+					for($i = 0; $i < count($arrayCategory); $i++){
+						echo "<option value='$arrayCategory[$i]'>$arrayCategory[$i]</option>";
+					}
+					unset($_SESSION['arrayCategoryIncomes']);
+				?>
+				</select>
+
+				<div class="err_log">
+				<?php
+					if(isset($_SESSION['e_category'])) {
+						echo $_SESSION['e_category'];
+						unset($_SESSION['e_category']);
+					}
+				?>
 				</div>
 				
+				<div class="fontel"><i class="icon-commenting"></i></div>
+				<textarea name="comment" placeholder="Wprowadź komentarz..."></textarea>	
+
+				<div class="col-12">
+					<input type="submit" value="&#xe804; DODAJ" style="font-family:fontello;"/>
 				</div>
-			</article>
-		
-		</main>
+
+				<div class="button">
+					<a class="tilelink" href="index.php?action=showMain" style="font-family:fontello;"><i class="icon-cancel"></i>ANULUJ</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
