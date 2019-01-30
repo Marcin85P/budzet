@@ -80,7 +80,7 @@
 				</div>
 
 				<div class="button">
-					<a class="tilelink" href="index.php?action=showMain" style="font-family:fontello;"><i class="icon-cancel"></i>ANULUJ</a>
+					<a class="tilelink" href="index.php?action=showMain"><i class="icon-cancel"></i>ANULUJ</a>
 				</div>
 			</form>
 		</div>
