@@ -3,7 +3,6 @@
 <form action="index.php?action=login" method="post">
 			
 	<div class="container">
-	
 		<div class="row">
 		
 			<div class="col-12 col-md-6">
@@ -18,16 +17,14 @@
 				<div class="window">
 					<?php
 						if(isset($_SESSION['successful_registration'])){
-							echo"<div class='inf'>
-										<span font-size:13px'>$komunikat</span>
-									</div>";
+							echo"<div class='inf'><span font-size:13px'>$komunikat</span></div>";
 						}
 					?>
 					<p class="word">LOGOWANIE</p>
 					
 					<div class="fontel"><i class="icon-user"></i></div>
-					<input type="text" name="log" placeholder="Login" 
-					value=
+						<input type="text" name="log" placeholder="Login" 
+						value=
 						"<?php
 							if (isset($_SESSION['login'])) {
 								echo $_SESSION['login'];
