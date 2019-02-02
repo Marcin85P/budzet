@@ -119,7 +119,7 @@
 				$line = $result->fetch_assoc();
 				
 				$result->close;
-				$result = $connect->query("SELECT id FROM payment_methods_assigned_to_users WHERE name = '$payment_methods' AND user_id = $_SESSION[id]");
+				$result = $connect->query("SELECT id FROM payment_methods_assigned_to_users WHERE name_pay = '$payment_methods' AND user_id = $_SESSION[id]");
 				$num_payment = $result->num_rows;
 				
 				if($num_payment<=0) {

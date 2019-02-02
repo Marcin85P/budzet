@@ -67,7 +67,7 @@
 					
 					$this->dbo->query("INSERT INTO expenses_category_assigned_to_users (id, user_id, name) SELECT NULL, '$id_user', expenses_category_default.name FROM expenses_category_default");					
 					$this->dbo->query("INSERT INTO incomes_category_assigned_to_users (id, user_id, name) SELECT NULL, '$id_user', incomes_category_default.name FROM incomes_category_default");						
-					$this->dbo->query("INSERT INTO payment_methods_assigned_to_users (id, user_id, name) SELECT NULL, '$id_user' , payment_methods_default.name FROM payment_methods_default");
+					$this->dbo->query("INSERT INTO payment_methods_assigned_to_users (id, user_id, name_pay) SELECT NULL, '$id_user' , payment_methods_default.name FROM payment_methods_default");
 					
 					unset($_SESSION['fr_nick']);
 					return ACTION_OK;

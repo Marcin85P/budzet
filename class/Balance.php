@@ -82,9 +82,18 @@ class Balance extends BalanceData{
 	
 	function askAQuestionExpense(){
 		return
-			"SELECT expenses.user_id, expenses.expense_category_assigned_to_user_id, expenses.amount, expenses.date, expenses.comment,  expenses_category_assigned_to_users.user_id, expenses_category_assigned_to_users.name
-					FROM expenses, expenses_category_assigned_to_users 
-						WHERE expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id 
+			"SELECT expenses.user_id,
+			expenses.expense_category_assigned_to_user_id,
+			expenses.payment_method_assigned_to_user_id,
+			expenses.amount,
+			expenses.date, expenses.comment,
+			expenses_category_assigned_to_users.user_id, 
+			expenses_category_assigned_to_users.name, 
+			payment_methods_assigned_to_users.user_id,
+			payment_methods_assigned_to_users.name_pay
+					FROM expenses, expenses_category_assigned_to_users, payment_methods_assigned_to_users 
+						WHERE expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id
+							AND expenses.payment_method_assigned_to_user_id = payment_methods_assigned_to_users.id
 							AND expenses.user_id=$_SESSION[id] 
 							AND expenses.date 
 								BETWEEN $_SESSION[first_day] 
@@ -142,7 +151,7 @@ class Balance extends BalanceData{
 		$array_number = 0;
 		
 		$sum_all_cat = $this->sumCategory($connect, $name);
-		$object = new BalanceData(0, '', 0, '');
+		$object = new BalanceData(0, '', 0, '', '');
 
 		for($i = 0; $i < $how_result; $i++){
 			$array_assoc = mysqli_fetch_assoc($result_incomes);
@@ -158,6 +167,11 @@ class Balance extends BalanceData{
 			$array[$i][1] = $object->category;
 			$array[$i][2] = $object->amount;
 			$array[$i][3] = $object->comment;
+			
+			if($name != 'incomes'){
+				$object->payment_method = $array_assoc['name_pay'];
+				$array[$i][4] = $object->payment_method;
+			}
 			
 			$arrayImplode[$i] = implode(',', $array[$i]);
 
