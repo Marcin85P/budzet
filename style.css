@@ -319,7 +319,7 @@ a.tilelink
 }
 
 #item:hover{
-	opacity:0.8;
+	opacity:1;
 }
 
 #submenu {
@@ -388,10 +388,17 @@ tr
 	text-align: center;
 	background-color: #2e303d;
 	color: #fff;
-	opacity:0.6;
+	opacity:0.7;
 }
 
 th.tabWin{
+	padding: 5px;
+	border:1px solid #fff;
+	border-left:none;
+	background-color: #000;
+}
+
+th.tabWinSum{
 	padding: 5px;
 	border:1px solid #fff;
 	border-left:none;
@@ -401,6 +408,7 @@ th.tabWinCom{
 	padding: 6px;
 	border-top:1px solid #fff;
 	border-bottom:1px solid #fff;
+	background-color: #000;
 }
 
 td{
@@ -419,16 +427,30 @@ th.sum{
 	border-right:1px solid #fff;
 }
 
-#line:hover{
-	background-color:#b22222;
-	opacity:0.8;
+#lineI:hover{
+	background-color:#339878;
+}
+
+#lineE:hover{
+	background-color:#7f3212;
 }
 
 .diagram{
 	padding:20px;
-	width: 360px;
+	width: 400px;
 	margin-left:auto;
 	margin-right:auto;
+}
+
+.balance{
+	margin-top:25px;
+	background-color: #2e303d;
+	border:2px solid #fff;
+	width:100%;
+	opacity:0.8;
+	text-align:center;
+	color: #fff;
+	padding: 13px;
 }
 
 #footer 
