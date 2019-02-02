@@ -82,15 +82,7 @@ class Balance extends BalanceData{
 	
 	function askAQuestionExpense(){
 		return
-			"SELECT expenses.user_id,
-			expenses.expense_category_assigned_to_user_id,
-			expenses.payment_method_assigned_to_user_id,
-			expenses.amount,
-			expenses.date, expenses.comment,
-			expenses_category_assigned_to_users.user_id, 
-			expenses_category_assigned_to_users.name, 
-			payment_methods_assigned_to_users.user_id,
-			payment_methods_assigned_to_users.name_pay
+			"SELECT expenses.user_id, expenses.expense_category_assigned_to_user_id, expenses.payment_method_assigned_to_user_id, expenses.amount, expenses.date, expenses.comment, expenses_category_assigned_to_users.user_id,  expenses_category_assigned_to_users.name, payment_methods_assigned_to_users.user_id, payment_methods_assigned_to_users.name_pay
 					FROM expenses, expenses_category_assigned_to_users, payment_methods_assigned_to_users 
 						WHERE expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id
 							AND expenses.payment_method_assigned_to_user_id = payment_methods_assigned_to_users.id

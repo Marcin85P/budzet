@@ -89,7 +89,7 @@ class Incomes{
 			}
 			
 			if(!$this->dbo){
-				return SERVER_ERROR;
+				return false;
 			}
 			
 			else {
@@ -119,7 +119,7 @@ class Incomes{
 					return ACTION_OK;
 				}
 				else {
-					if(!$result) return SERVER_ERROR;
+					if(!$result) return false;
 				}				
 				$connect->close();
 			}			

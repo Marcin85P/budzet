@@ -12,7 +12,7 @@ if(!isset($_SESSION['zalogowany'])){
 	
 		<div class="col-sm-12">
 			<div id="buttonSticky">
-				<button id="item">Termin</button>	
+				<button id="item"><i class="icon-calendar"></i> Wybierz okres</button>	
 				
 				<div id="submenu">
 					<a href="index.php?action=tableView">Bieżący miesiąc</a>
@@ -87,7 +87,7 @@ if(!isset($_SESSION['zalogowany'])){
 						<thead>
 						
 							<tr>
-								<th colspan="5" class="tableTitle" style="background-color:#7f3212;">Wydatki
+								<th colspan="5" class="tableTitle" style="background-color:#8F3212;">Wydatki
 								<?php 
 								if(isset($_SESSION['score'])){
 									echo " ".$_SESSION['score'];

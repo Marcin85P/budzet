@@ -8,6 +8,12 @@
 <div class="container">
 	<div class="row">
 		<div class="windowAdd">
+			<?php 
+				if(isset($komunikat)){
+					echo "<div class='statement'>$komunikat</div>";
+				}
+			?>
+			
 			<h2 class="word" style="font-size:14px;">DODAJ PRZYCHÓD</h2>
 			
 			<form action="index.php?action=addIncomes" method="post">

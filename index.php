@@ -86,14 +86,9 @@
 			case 'addIncomes':
 				switch($portal->addIncomesFunction()):
 					case ACTION_OK:
-						$portal->setMessage('Twój przychód został dodany pomyślnie!');
+						$portal->setMessage('Twój przychód został dodany.');
 						header('Location:index.php?action=showIncomes');
 					return;
-					
-					case SERVER_ERROR:
-					default:
-						$portal->setMessage('Błąd serwera!');
-						header('Location:index.php?action=showMain');
 					endswitch;
 					
 			header('Location:index.php?action=showIncomes');
@@ -102,14 +97,9 @@
 			case 'addExpenses':
 				switch($portal->addExpensesFunction()):
 					case ACTION_OK:
-						$portal->setMessage('Twój wydatek został dodany pomyślnie!');
+						$portal->setMessage('Twój wydatek został dodany.');
 						header('Location:index.php?action=showExpenses');
 					return;
-					
-					case SERVER_ERROR:
-					default:
-						$portal->setMessage('Błąd serwera!');
-						header('Location:index.php?action=showMain');
 					endswitch;
 					
 			header('Location:index.php?action=showExpenses');
