@@ -17,6 +17,7 @@ body
     position:relative;
 	background-image: url("img/accounting-application-business-closeup-computer-data-1430481-pxhere.com.jpg");
 	background-size: cover;
+	background-attachment: fixed;
 }
 
 .err_log
@@ -310,7 +311,6 @@ a.tilelink
     padding: 7px;
     font-size: 13px;
     cursor: pointer;
-	letter-spacing: 2px;
 	text-align: center;
 	border: none;
 	opacity:0.6;
@@ -386,9 +386,9 @@ tr
 	padding:3px;
 	font-size:12px;
 	text-align: center;
-	background-color: #2e303d;
+	background-color: #808090;
 	color: #fff;
-	opacity:0.7;
+	opacity:0.8;
 }
 
 th.tabWin{
@@ -432,12 +432,26 @@ th.sum{
 }
 
 #lineE:hover{
-	background-color:#7f3212;
+	background-color:#8F3212;
 }
 
 .diagram{
 	padding:20px;
 	width: 400px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.statement{
+	color: #fff;
+	text-align:center;
+	border:2px solid #fff;
+	margin-bottom:15px;
+	font-size: 13px;
+	height: 30px;
+	width:215px;
+	border-radius: 5px 5px 0 0;
+	padding-top: 3px;
 	margin-left:auto;
 	margin-right:auto;
 }
