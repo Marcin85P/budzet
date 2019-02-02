@@ -53,7 +53,7 @@ class Balance extends BalanceData{
 			$_SESSION['e_input'] = "<span style='color:red'>Ustaw datę!</span>";
 			$this->setActualDate();
 			unset($_SESSION['c']);
-			header('Location:index.php?action=customView');
+			header('Location:index.php?action=tableView');
 			exit();
 		}
 		

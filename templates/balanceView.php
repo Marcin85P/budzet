@@ -18,15 +18,35 @@ if(!isset($_SESSION['zalogowany'])){
 					<a href="index.php?action=tableView">Bieżący miesiąc</a>
 					<a href="index.php?action=tableViewPreviousMonth">Poprzedni miesiąc</a>
 					<a href="index.php?action=tableViewCurrentYear">Bieżący rok</a>
-					<a href="index.php?action=customView">Niestandardowy</a>
+					<a style="cursor:pointer" data-toggle="modal" data-target="#exampleModal">Niestandardowy</a>
 				</div>		
+			</div>
+		</div>
+		
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h6 class="modal-title" id="exampleModalLabel">Niestandardowy okres:</h6>
+					</div>
+					<form action='index.php?action=tableViewCustom' method='post'>
+						<div class="modal-body">
+							<div class="fontel"><i class="icon-calendar-1"></i></div><input type='date' name='custom_input_1' style='max-width:200px'></br>
+							<div class="fontel"><i class="icon-calendar-1"></i></div><input type='date' name='custom_input_2' style='max-width:200px'>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+							<input type="submit" style="width:50px; height:38px; margin:0;" value='OK'>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 
 		<div class="col-12 col-lg-6">
 			<div id="table">		
-					<table class="tb">
-					
+					<table class="tb">	
 						<thead>
 							<tr>
 								<th colspan="4" class="tableTitle" style="background-color:#339878;">Przychody
@@ -72,20 +92,15 @@ if(!isset($_SESSION['zalogowany'])){
 								<th style="font-size:13px; border-bottom:none;" class="tabWinSum"><?php echo number_format($sumIncomes, 2);?></th>
 								<td class="end"></td>
 							</tr>
-						
 						</tbody>
-						
 					</table>					
 			</div>
 		</div>
 		
 		<div class="col-12 col-lg-6">
-			<div id="table">
-				<div class="table-responsive">			
+			<div id="table">		
 					<table class="tb">
-
 						<thead>
-						
 							<tr>
 								<th colspan="5" class="tableTitle" style="background-color:#8F3212;">Wydatki
 								<?php 
@@ -138,11 +153,8 @@ if(!isset($_SESSION['zalogowany'])){
 								<th style="font-size:13px; border-bottom:none;" class="tabWinSum"><?php echo number_format($sumExpenses, 2);?></th>
 								<td class="end"></td>
 							</tr>
-						
-						</tbody>
-						
-					</table>				
-				</div>				
+						</tbody>	
+					</table>								
 			</div>
 		</div>
 					
@@ -191,20 +203,17 @@ if(!isset($_SESSION['zalogowany'])){
 		
 		<?php $balance = $sumIncomes - $sumExpenses; ?>
 		
-		<div class="balance">Bilans:
 			<?php
 				$balance = round($balance,2);
 				
 				if($balance > 0){
-					echo "<t style='color:green'>$balance</t>";
-					echo "<p style='font-size:17px'>Gratulacje! Świetnie zarządzasz finansami!";
+					echo "<div class='balance' style='background-color: #339878'>Bilans: <t>$balance</t>; <p style='font-size:17px'>Gratulacje! Świetnie zarządzasz finansami!</p></div>";
 				}
 				else if($balance < 0){
-					echo " <t style='color:red'>$balance</t>";
-					echo "<p style='font-size:17px'>Niestety Twoje wydatki przekraczają dochody!";
+					echo "<div class='balance' style='background-color: #8F3212'>Bilans: <t>$balance</t>; <p style='font-size:17px'>Niestety Twoje wydatki przekraczają dochody!</p></div>";
 				}
 				else{
-					echo "<t style='color:#fff'>$balance</t>";
+					echo "<div class='balance'>Bilans: <t style='color:#fff'>$balance</t></div>";
 				}
 			?>
 		</div>
