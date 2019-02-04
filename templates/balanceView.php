@@ -32,8 +32,8 @@ if(!isset($_SESSION['zalogowany'])){
 					</div>
 					<form action='index.php?action=tableViewCustom' method='post'>
 						<div class="modal-body">
-							<div class="fontel"><i class="icon-calendar-1"></i></div><input type='date' name='custom_input_1' style='max-width:200px'></br>
-							<div class="fontel"><i class="icon-calendar-1"></i></div><input type='date' name='custom_input_2' style='max-width:200px'>
+							<div class="fontel"><i class="icon-calendar-1"></i></div><input style="opacity:1;" type='date' name='custom_input_1' style='max-width:200px'></br>
+							<div class="fontel"><i class="icon-calendar-1"></i></div><input style="opacity:1;" type='date' name='custom_input_2' style='max-width:200px'>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
