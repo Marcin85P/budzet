@@ -56,7 +56,7 @@ $(document).ready(function(){
 
 	<?php
 		if(isset($komunikat) && isset($_SESSION['passChange'])){
-			echo "<div class='err_log' style='color: green; font-size:16px;'>$komunikat</div>";
+			echo "<div class='err_log' style='color: #335a32; font-size:16px;'>$komunikat</div>";
 			unset($_SESSION['passChange']);
 		}
 		else{

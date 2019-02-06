@@ -24,7 +24,7 @@ body
 {
 	text-align:center;
 	padding-top: 8px;
-	color: red;
+	color: #b22222;
 	font-size:11px;
 }
 
@@ -450,8 +450,8 @@ th.sum{
 .statement{
 	color: #fff;
 	border-radius: 5px;
-	border-bottom:3px solid #21af95;
-	border-top:3px solid #21af95;
+	border-bottom:2px solid #335a32;
+	border-top:2px solid #335a32;
 	padding: 4px;
 	text-align:center;
 	margin-bottom:15px;
