@@ -135,11 +135,13 @@
 			case 'settings':
 				switch($portal->changePassword()):
 					case ACTION_OK:
+						$_SESSION['passChange'] = true;
 						$portal->setMessage('Twoje hasło zostało zmienione.');
-						header('Location:index.php?action=showMain');
+						header('Location:index.php?action=settingsView');
 					return;
 					
 					case ACTION_FAILED:
+						$portal->setMessage('Twoje hasło jest zbyt krótkie lub niepoprawne.');
 						header('Location:index.php?action=settingsView');
 					return;
 				
@@ -150,21 +152,80 @@
 				header('Location:index.php?action=settingsView');
 			break;
 			
-			case 'deleteCategory':
-				switch($portal->deleteIncomesCategory()):
+			case 'addIncomesCategory':
+				switch($portal->addIncomesCategory()):
 					case ACTION_OK:
-						$portal->setMessage('Kategoria przychodu została usunięta.');
-						header('Location:index.php?action=showMain');
+						$_SESSION['passChange'] = true;
+						$portal->setMessage('Kategoria przychodu została dodana.');
+						header('Location:index.php?action=settingsView');
 					return;
 					
-					case ACTION_FAILED_NAME:
-						$portal->setMessage('Tej kategorii nie można usunąć.');
-						header('Location:index.php?action=settingsCategory');
+					case FAILED_POST:
+						$portal->setMessage('Nie podano kategorii.');
+						header('Location:index.php?action=settingsView');
 					return;
 					
 					case ACTION_FAILED:
-						$portal->setMessage('Brak podanej kategorii przychodu.');
-						header('Location:index.php?action=settingsCategory');
+						$portal->setMessage('Ta kategoria już istnieje.');
+						header('Location:index.php?action=settingsView');
+					return;
+					
+					endswitch;
+			break;
+			
+			case 'addExpensesCategory':
+				switch($portal->addExpensesCategory()):
+					case ACTION_OK:
+						$_SESSION['passChange'] = true;
+						$portal->setMessage('Kategoria wydatku została dodana.');
+						header('Location:index.php?action=settingsView');
+					return;
+					
+					case FAILED_POST:
+						$portal->setMessage('Nie podano kategorii.');
+						header('Location:index.php?action=settingsView');
+					return;
+					
+					case ACTION_FAILED:
+						$portal->setMessage('Ta kategoria już istnieje.');
+						header('Location:index.php?action=settingsView');
+					return;
+					
+					endswitch;
+			break;
+
+			case 'addPaymentMethod':
+				switch($portal->addPaymentMethod()):
+					case ACTION_OK:
+						$_SESSION['passChange'] = true;
+						$portal->setMessage('Forma płatności została dodana do listy.');
+						header('Location:index.php?action=settingsView');
+					return;
+					
+					case FAILED_POST:
+						$portal->setMessage('Nie podano formy płatności.');
+						header('Location:index.php?action=settingsView');
+					return;
+					
+					case ACTION_FAILED:
+						$portal->setMessage('Ta forma płatności już istnieje.');
+						header('Location:index.php?action=settingsView');
+					return;
+					
+					endswitch;
+			break;
+			
+			case 'deleteCategory':
+				switch($portal->deleteIncomesCategory()):
+					case ACTION_OK:
+						$_SESSION['passChange'] = true;
+						$portal->setMessage('Kategoria przychodu została usunięta.');
+						header('Location:index.php?action=settingsView');
+					return;
+					
+					case ACTION_FAILED:
+						$portal->setMessage('Nie wybrano kategorii.');
+						header('Location:index.php?action=settingsView');
 					return;
 					
 					endswitch;
@@ -173,18 +234,30 @@
 			case 'deleteCategoryExp':
 				switch($portal->deleteExpensesCategory()):
 					case ACTION_OK:
+						$_SESSION['passChange'] = true;
 						$portal->setMessage('Kategoria wydatku została usunięta.');
-						header('Location:index.php?action=showMain');
-					return;
-					
-					case ACTION_FAILED_NAME:
-						$portal->setMessage('Tej kategorii nie można usunąć.');
-						header('Location:index.php?action=settingsCategoryExp');
+						header('Location:index.php?action=settingsView');
 					return;
 					
 					case ACTION_FAILED:
-						$portal->setMessage('Brak podanej kategorii wydatku.');
-						header('Location:index.php?action=settingsCategoryExp');
+						$portal->setMessage('Nie wybrano kategorii.');
+						header('Location:index.php?action=settingsView');
+					return;
+					
+					endswitch;
+			break;
+			
+			case 'deletePaymentMethod':
+				switch($portal->deletePaymentMethod()):
+					case ACTION_OK:
+						$_SESSION['passChange'] = true;
+						$portal->setMessage('Forma płatności została usunięta.');
+						header('Location:index.php?action=settingsView');
+					return;
+					
+					case ACTION_FAILED:
+						$portal->setMessage('Nie wybrano formy płatności.');
+						header('Location:index.php?action=settingsView');
 					return;
 					
 					endswitch;

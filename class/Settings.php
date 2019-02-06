@@ -22,8 +22,7 @@
 				
 				$pass_base = $password_base['password'];
 				
-				if ((strlen($pass_n) < 6) || (strlen($pass_n) > 20)) {
-					$_SESSION['e_pass'] = "Hasło musi posiadać od 6 do 20 znaków!";
+				if ((strlen($pass_n) < 6) || (strlen($pass_n) > 15)) {
 					return ACTION_FAILED;
 				}
 				
@@ -35,7 +34,6 @@
 					return ACTION_OK;
 				}
 				else{
-					$_SESSION['e_pass2'] = "Twoje stare hasło nie jest poprawne!";
 					return ACTION_FAILED;
 				}
 			}					

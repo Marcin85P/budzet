@@ -22,7 +22,6 @@ class Incomes{
 			}
 			
 			$_SESSION['arrayCategoryIncomes'] = $arrayCategory;
-			$connect->close();
 		}
 		
 		function deleteIncomesCategory(){
@@ -30,23 +29,49 @@ class Incomes{
 			$connect -> query ('SET NAMES utf8');
 			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
 			
-			$incomesCategory = mb_strtolower($_POST['deleteIncomesCategory'], 'UTF-8');
-			$result = $connect->query("SELECT id FROM incomes_category_assigned_to_users WHERE name = '$incomesCategory' AND user_id = $_SESSION[id]");
-			$array_assoc = mysqli_fetch_assoc($result);
-			
-			$inne = $connect->query("SELECT id FROM incomes_category_assigned_to_users WHERE name = 'inne' AND user_id = $_SESSION[id]");
-			$array_inne = mysqli_fetch_assoc($inne);
-			
-			if($result->num_rows > 0 && $incomesCategory != 'inne'){
-				$connect->query("UPDATE incomes SET income_category_assigned_to_user_id = $array_inne[id] WHERE income_category_assigned_to_user_id = $array_assoc[id] AND user_id = $_SESSION[id]");
-				$connect->query("DELETE FROM incomes_category_assigned_to_users WHERE name = '$incomesCategory' AND user_id = $_SESSION[id]");
-				return ACTION_OK;
-			}
-			if($incomesCategory == 'inne'){
-				return ACTION_FAILED_NAME;
+			if(empty($_POST['deleteIncomesCategory'])){
+				return ACTION_FAILED;
 			}
 			else{
-				return ACTION_FAILED;
+				$incomesCategory = mb_strtolower($_POST['deleteIncomesCategory'], 'UTF-8');
+				$result = $connect->query("SELECT id FROM incomes_category_assigned_to_users WHERE name = '$incomesCategory' AND user_id = $_SESSION[id]");
+				$array_assoc = mysqli_fetch_assoc($result);
+				
+				$inne = $connect->query("SELECT id FROM incomes_category_assigned_to_users WHERE name = 'inne' AND user_id = $_SESSION[id]");
+				$array_inne = mysqli_fetch_assoc($inne);
+				
+				if($result->num_rows > 0 && $incomesCategory != 'inne'){
+					$connect->query("UPDATE incomes SET income_category_assigned_to_user_id = $array_inne[id] WHERE income_category_assigned_to_user_id = $array_assoc[id] AND user_id = $_SESSION[id]");
+					$connect->query("DELETE FROM incomes_category_assigned_to_users WHERE name = '$incomesCategory' AND user_id = $_SESSION[id]");
+					return ACTION_OK;
+				}
+			}
+		}
+		
+		function addIncomesCategory(){
+			$connect = $this -> dbo;
+			$connect -> query ('SET NAMES utf8');
+			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
+			
+			if(empty($_POST['checkAddIncomes'])){
+				return FAILED_POST;
+			}
+			else{
+				$category = $_POST['checkAddIncomes'];
+				
+				$result = $connect->query("SELECT id FROM incomes_category_assigned_to_users WHERE name = '$category' AND user_id = $_SESSION[id]");
+				$num = $result->num_rows;
+				
+				if($num<=0) {
+					$result->close;
+					$connect->query("INSERT INTO incomes_category_assigned_to_users VALUES (NULL, $_SESSION[id], '$category')");
+					$result = $connect->query("SELECT id FROM incomes_category_assigned_to_users WHERE name = '$category' AND user_id = $_SESSION[id]");
+					
+					return ACTION_OK;
+				}
+				else{
+					return ACTION_FAILED;
+				}
 			}
 		}
 
@@ -98,14 +123,7 @@ class Incomes{
 				$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
 				
 				$result = $connect->query("SELECT id FROM incomes_category_assigned_to_users WHERE name = '$category' AND user_id = $_SESSION[id]");
-				$num = $result->num_rows;
 				
-				if($num<=0) {
-					$result->close;
-					$connect->query("INSERT INTO incomes_category_assigned_to_users VALUES (NULL, $_SESSION[id], '$category')");
-					$result = $connect->query("SELECT id FROM incomes_category_assigned_to_users WHERE name = '$category' AND user_id = $_SESSION[id]");
-				}
-					
 				$line = $result->fetch_assoc();
 				
 				if ($connect->query ("INSERT INTO incomes VALUES (NULL, $_SESSION[id], $line[id], '$amount', '$date', '$comment')")) {

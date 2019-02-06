@@ -61,6 +61,7 @@ if(!isset($portal)) die();
 					case 'showExpenses':
 						$_SESSION['date'] = date("Y-m-d");
 						$portal->loadCategoryExpenses();
+						$portal->loadPaymentMethods();
 						include 'templates/expenses.php';
 					break;
 					
@@ -73,6 +74,9 @@ if(!isset($portal)) die();
 					break;
 					
 					case 'settingsView':
+						$portal->loadCategoryIncomes();
+						$portal->loadCategoryExpenses();
+						$portal->loadPaymentMethods();
 						include 'templates/settings.php';
 					break;
 					

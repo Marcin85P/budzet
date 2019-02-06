@@ -130,7 +130,7 @@ h1
 .infowin
 {
 	color: #2e303d;
-	text-align: right;
+	text-align: center;
 	font-size: 15px;
 	color: #fff;
 	margin-left:auto;
@@ -322,6 +322,10 @@ a.tilelink
 	opacity:1;
 }
 
+#item:focus{
+	outline:none;
+}
+
 #submenu {
 	opacity: 0;
 	width:135px;
@@ -448,13 +452,14 @@ th.sum{
 .statement{
 	color: #fff;
 	text-align:center;
-	border:2px solid #fff;
+	border:1px solid #fff;
+	border-top:2px solid #fff;
 	margin-bottom:15px;
 	font-size: 13px;
 	height: 30px;
 	width:215px;
 	border-radius: 5px 5px 0 0;
-	padding-top: 3px;
+	padding-top: 4px;
 	margin-left:auto;
 	margin-right:auto;
 }
@@ -472,6 +477,49 @@ th.sum{
 	padding-top: 13px;
 	border-radius: 8px;
 	min-height:65px;
+}
+
+.settingButton{
+	border:1px solid #fff;
+	border-top:2px solid #fff;
+	border-bottom:2px solid #fff;
+	border-radius: 5px;
+	color:#fff;
+	font-size:14px;
+	opacity:0.6;
+	margin-right:auto;
+	margin-left:auto;
+	padding:6px;
+	width:350px;
+	text-align:center;
+	background-color:#2e303d;
+	margin-top:15px;
+}
+
+.settingButton:hover{
+	cursor:pointer;
+	opacity:0.8;
+}
+
+.settingButton:focus{
+	outline: none;
+}
+
+.windowSetting{
+	width:350px;
+	border:1px solid #fff;
+	border-bottom:2px solid #fff;
+	border-radius:5px;
+	margin-right:auto;
+	margin-left:auto;
+	opacity:0.8;
+	display:none;
+	border-top:2px solid #fff;
+}
+
+input[class=submitSet]{
+	width:320px;
+	margin-bottom:15px;
 }
 
 #footer 

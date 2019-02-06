@@ -56,11 +56,17 @@
 				</div>								
 				
 				<div class="fontel"><i class="icon-credit-card"></i></div>
-				<select class="payment" name="payment_methods">								 
-					<option value='empty' disabled selected hidden>Sposób płatności</option>
-					<option value="Gotówka">Gotówka</option>
-					<option value="Karta debetowa">Karta debetowa</option>
-					<option value="Karta kredytowa">Karta kredytowa</option>
+				<select class="payment" name="payment_methods">
+					<?php
+					$arrayPay = $_SESSION['arrayPay'];
+					
+					echo "<option value='empty' disabled selected hidden>Forma płatności</option>";
+					
+					for($i = 0; $i < count($arrayPay); $i++){
+						echo "<option value='$arrayPay[$i]'>$arrayPay[$i]</option>";
+					}
+					unset($_SESSION['arrayPay']);
+					?>
 				</select>
 					 
 				<div class="err_log">

@@ -100,6 +100,26 @@
 			return $load->loadCategory();
 		}
 		
+		function loadPaymentMethods(){
+			$load = new Expenses($this->dbo);
+			return $load->loadPaymentMethods();
+		}
+		
+		function addIncomesCategory(){
+			$add = new Incomes($this->dbo);
+			return $add->addIncomesCategory();
+		}
+		
+		function addExpensesCategory(){
+			$add = new Expenses($this->dbo);
+			return $add->addExpensesCategory();
+		}
+		
+		function addPaymentMethod(){
+			$add = new Expenses($this->dbo);
+			return $add->addPaymentMethod();
+		}
+		
 		function addIncomesFunction(){
 			$inc = new Incomes($this->dbo);
 			return $inc->addIncomesFunction();
@@ -128,6 +148,11 @@
 		function deleteExpensesCategory(){
 			$del = new Expenses($this->dbo);
 			return $del->deleteExpensesCategory();
+		}
+		
+		function deletePaymentMethod(){
+			$del = new Expenses($this->dbo);
+			return $del->deletePaymentMethod();
 		}
 	}
 ?>
