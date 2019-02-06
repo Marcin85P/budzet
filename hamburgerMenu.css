@@ -73,7 +73,7 @@
 }
 
 #menu ul li a:hover {
-	font-size:14px;
+	font-size:12px;
 	opacity:1;
 	transition: font-size 150ms;
 	border-bottom:2px solid #fff;
