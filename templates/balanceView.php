@@ -49,7 +49,7 @@ if(!isset($_SESSION['zalogowany'])){
 					<table class="tb">	
 						<thead>
 							<tr>
-								<th colspan="4" class="tableTitle" style="background-color:#339878;">Przychody
+								<th colspan="4" class="tableTitle" style="background-color:#446b43;">Przychody
 									<?php 
 									if(isset($_SESSION['score'])){
 										echo " ".$_SESSION['score'];
@@ -102,7 +102,7 @@ if(!isset($_SESSION['zalogowany'])){
 					<table class="tb">
 						<thead>
 							<tr>
-								<th colspan="5" class="tableTitle" style="background-color:#8F3212;">Wydatki
+								<th colspan="5" class="tableTitle" style="background-color:#b22222;">Wydatki
 								<?php 
 								if(isset($_SESSION['score'])){
 									echo " ".$_SESSION['score'];
@@ -207,10 +207,10 @@ if(!isset($_SESSION['zalogowany'])){
 				$balance = round($balance,2);
 				
 				if($balance > 0){
-					echo "<div class='balance' style='background-color: #339878'>Bilans: <t>$balance</t>; <p style='font-size:17px'>Gratulacje! Świetnie zarządzasz finansami!</p></div>";
+					echo "<div class='balance' style='background-color: #446b43'>Bilans: <t>$balance</t>; <p style='font-size:17px'>Gratulacje! Świetnie zarządzasz finansami!</p></div>";
 				}
 				else if($balance < 0){
-					echo "<div class='balance' style='background-color: #8F3212'>Bilans: <t>$balance</t>; <p style='font-size:17px'>Niestety Twoje wydatki przekraczają dochody!</p></div>";
+					echo "<div class='balance' style='background-color: #b22222'>Bilans: <t>$balance</t>; <p style='font-size:17px'>Niestety Twoje wydatki przekraczają dochody!</p></div>";
 				}
 				else{
 					echo "<div class='balance'>Bilans: <t style='color:#fff'>$balance</t></div>";

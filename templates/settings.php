@@ -17,6 +17,7 @@ $(document).ready(function(){
 $(document).ready(function(){
   $("[name = 'two']").click(function(){
     $("[name = 'addInc']").toggle();
+	
   });
 });
 
