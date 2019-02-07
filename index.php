@@ -4,7 +4,7 @@
 	session_start();
 
 	try{
-		$portal = new PortalFront("localhost", "root", "", "aplikacjaobiektowo");
+		$portal = new PortalFront("localhost", "marcin5p_root", "nevermind1", "marcin5p_budzet");
 		$action = 'showMain';
 		
 		 if (isset($_GET['action'])) {

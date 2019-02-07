@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 if(!isset($portal)) die();
 ?>
 
@@ -7,7 +7,7 @@ if(!isset($portal)) die();
 <html lang="pl">
 	<head>
 		<meta charset="utf-8"/>
-		<title>Budżet</title>
+		<title>Budget</title>
 		<meta name="author" content="Marcin Piwowar"/>
 		
 		<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">

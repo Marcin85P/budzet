@@ -14,9 +14,9 @@ body
 	font-size:22px;
 	font-family: 'Open Sans', sans-serif;
     min-height: 100%;
-    position:relative;
+	position:relative;
 	background-image: url("img/accounting-application-business-closeup-computer-data-1430481-pxhere.com.jpg");
-	background-size: cover;
+	background-size: auto;
 	background-attachment: fixed;
 }
 
@@ -40,7 +40,7 @@ body
 {
 	padding: 3px;
 	border-radius: 3px;
-	background-color: #21af95;
+	background-color: #2f4f4f;
 	font-size:13px;
 	margin-top: 5px;
 	margin-bottom: 15px;

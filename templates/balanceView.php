@@ -207,10 +207,10 @@ if(!isset($_SESSION['zalogowany'])){
 				$balance = round($balance,2);
 				
 				if($balance > 0){
-					echo "<div class='balance' style='background-color: #446b43'>Bilans: <t>$balance</t>; <p style='font-size:17px'>Gratulacje! Świetnie zarządzasz finansami!</p></div>";
+					echo "<div class='balance' style='background-color: #446b43'>Bilans: <t>$balance</t> zł<p style='font-size:17px'>Gratulacje! Świetnie zarządzasz finansami!</p></div>";
 				}
 				else if($balance < 0){
-					echo "<div class='balance' style='background-color: #b22222'>Bilans: <t>$balance</t>; <p style='font-size:17px'>Niestety Twoje wydatki przekraczają dochody!</p></div>";
+					echo "<div class='balance' style='background-color: #b22222'>Bilans: <t>$balance</t> zł<p style='font-size:17px'>Niestety Twoje wydatki przekraczają dochody!</p></div>";
 				}
 				else{
 					echo "<div class='balance'>Bilans: <t style='color:#fff'>$balance</t></div>";
