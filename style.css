@@ -519,6 +519,10 @@ input[class=submitSet]{
 	margin-bottom:15px;
 }
 
+.delete:hover{
+	cursor:pointer;
+}
+
 #footer 
 {
 	background-color: #2e303d;

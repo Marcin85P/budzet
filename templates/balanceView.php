@@ -49,7 +49,7 @@ if(!isset($_SESSION['zalogowany'])){
 					<table class="tb">	
 						<thead>
 							<tr>
-								<th colspan="4" class="tableTitle" style="background-color:#446b43;">Przychody
+								<th colspan="5" class="tableTitle" style="background-color:#446b43;">Przychody
 									<?php 
 									if(isset($_SESSION['score'])){
 										echo " ".$_SESSION['score'];
@@ -60,6 +60,7 @@ if(!isset($_SESSION['zalogowany'])){
 							
 							<tr>
 								<th class="tabWin">Data</th>
+								<th class="tabWin"></th>
 								<th class="tabWin">Kategoria</th>
 								<th class="tabWin">Kwota (PLN)</th>
 								<th class="tabWinCom">Komentarz</th>
@@ -77,6 +78,7 @@ if(!isset($_SESSION['zalogowany'])){
 									
 									echo "<tr id='lineI'>";
 									echo "<td style='min-width: 70px;'>$arrayExplode[0]</td>";
+									echo "<td><a href='index.php?action=deleteIncomes&idIncome=$arrayExplode[4]'><i style='color:#fff;' class='icon-calendar-1'></i></a></td>";
 									echo "<td style='min-width: 100px;'>$arrayExplode[1]</td>";
 									echo "<td style='min-width: 70px;'>$arrayExplode[2]</td>";
 									echo "<td class='end' style='min-width: 110px;'>$arrayExplode[3]</td></tr>";
@@ -88,7 +90,7 @@ if(!isset($_SESSION['zalogowany'])){
 
 							<tr>
 								<th class="tabWinSum" style="border-bottom:none">Suma</th>
-								<td class="tabWin"></td>
+								<td class="tabWin" colspan="2"></td>
 								<th style="font-size:13px; border-bottom:none;" class="tabWinSum"><?php echo number_format($sumIncomes, 2);?></th>
 								<td class="end"></td>
 							</tr>
@@ -102,7 +104,7 @@ if(!isset($_SESSION['zalogowany'])){
 					<table class="tb">
 						<thead>
 							<tr>
-								<th colspan="5" class="tableTitle" style="background-color:#b22222;">Wydatki
+								<th colspan="6" class="tableTitle" style="background-color:#b22222;">Wydatki
 								<?php 
 								if(isset($_SESSION['score'])){
 									echo " ".$_SESSION['score'];
@@ -114,6 +116,7 @@ if(!isset($_SESSION['zalogowany'])){
 							
 							<tr>
 								<th class="tabWin">Data</th>
+								<th class="tabWin"></th>
 								<th class="tabWin">Kategoria</th>
 								<th class="tabWin">Sposób płatności</th>
 								<th class="tabWin">Kwota (PLN)</th>
@@ -134,8 +137,9 @@ if(!isset($_SESSION['zalogowany'])){
 										
 										echo "<tr id='lineE'>";
 										echo "<td style='min-width: 70px;'>$arrayExplode[0]</td>";
+										echo "<td><a href='index.php?action=deleteExpenses&idExpense=$arrayExplode[4]'><i style='color:#fff;' class='icon-calendar-1'></i></a></td>";
 										echo "<td style='min-width: 100px;'>$arrayExplode[1]</td>";
-										echo "<td style='min-width: 70px;'>$arrayExplode[4]</td>";
+										echo "<td style='min-width: 70px;'>$arrayExplode[5]</td>";
 										echo "<td style='min-width: 70px;'>$arrayExplode[2]</td>";
 										echo "<td class='end' style='min-width: 110px;'>$arrayExplode[3]</td></tr>";
 										
@@ -149,7 +153,7 @@ if(!isset($_SESSION['zalogowany'])){
 
 							<tr>
 								<th class="tabWinSum" style="border-bottom:none">Suma</th>
-								<td class="tabWin" colspan="2"></td>
+								<td class="tabWin" colspan="3"></td>
 								<th style="font-size:13px; border-bottom:none;" class="tabWinSum"><?php echo number_format($sumExpenses, 2);?></th>
 								<td class="end"></td>
 							</tr>

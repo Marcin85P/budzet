@@ -69,7 +69,7 @@ class Balance extends BalanceData{
 	
 	function askAQuestionIncome(){
 		return 
-			"SELECT incomes.user_id, incomes.income_category_assigned_to_user_id, incomes.amount, incomes.date, incomes.comment,  incomes_category_assigned_to_users.user_id, incomes_category_assigned_to_users.name
+			"SELECT incomes.id, incomes.user_id, incomes.income_category_assigned_to_user_id, incomes.amount, incomes.date, incomes.comment,  incomes_category_assigned_to_users.user_id, incomes_category_assigned_to_users.name
 					FROM incomes, incomes_category_assigned_to_users 
 						WHERE incomes.income_category_assigned_to_user_id = incomes_category_assigned_to_users.id 
 							AND incomes.user_id=$_SESSION[id] 
@@ -82,7 +82,7 @@ class Balance extends BalanceData{
 	
 	function askAQuestionExpense(){
 		return
-			"SELECT expenses.user_id, expenses.expense_category_assigned_to_user_id, expenses.payment_method_assigned_to_user_id, expenses.amount, expenses.date, expenses.comment, expenses_category_assigned_to_users.user_id,  expenses_category_assigned_to_users.name, payment_methods_assigned_to_users.user_id, payment_methods_assigned_to_users.name_pay
+			"SELECT expenses.id, expenses.user_id, expenses.expense_category_assigned_to_user_id, expenses.payment_method_assigned_to_user_id, expenses.amount, expenses.date, expenses.comment, expenses_category_assigned_to_users.user_id,  expenses_category_assigned_to_users.name, payment_methods_assigned_to_users.user_id, payment_methods_assigned_to_users.name_pay
 					FROM expenses, expenses_category_assigned_to_users, payment_methods_assigned_to_users 
 						WHERE expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id
 							AND expenses.payment_method_assigned_to_user_id = payment_methods_assigned_to_users.id
@@ -149,7 +149,8 @@ class Balance extends BalanceData{
 			$array_assoc = mysqli_fetch_assoc($result_incomes);
 			
 			$category_t = $array_assoc['name'];
-			$object->category = ucfirst($category_t);		
+			$object->category = ucfirst($category_t);
+			$object->id = $array_assoc['id'];
 			$object->b_date = $array_assoc['date'];
 			$object->comment = $array_assoc['comment'];
 			$object->amount = $array_assoc['amount'];
@@ -159,10 +160,11 @@ class Balance extends BalanceData{
 			$array[$i][1] = $object->category;
 			$array[$i][2] = $object->amount;
 			$array[$i][3] = $object->comment;
+			$array[$i][4] = $object->id;
 			
 			if($name != 'incomes'){
 				$object->payment_method = $array_assoc['name_pay'];
-				$array[$i][4] = $object->payment_method;
+				$array[$i][5] = $object->payment_method;
 			}
 			
 			$arrayImplode[$i] = implode(',', $array[$i]);

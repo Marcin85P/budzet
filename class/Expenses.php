@@ -24,6 +24,14 @@
 			$_SESSION['arrayCategoryExpenses'] = $arrayCategory;
 		}
 		
+		function deleteExpenses($id){
+			$connect = $this -> dbo;
+			$connect -> query ('SET NAMES utf8');
+			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
+			
+			$connect->query("DELETE FROM expenses WHERE id=$id");
+		}
+		
 		function loadPaymentMethods(){
 			$arrayPay = array();
 			$connect = $this -> dbo;

@@ -135,6 +135,16 @@
 			return $tab->tableView($name);
 		}
 		
+		function deleteIncomes($id){
+			$delInc = new Incomes($this->dbo);
+			return $delInc->deleteIncomes($id);
+		}
+		
+		function deleteExpenses($id){
+			$delInc = new Expenses($this->dbo);
+			return $delInc->deleteExpenses($id);
+		}
+		
 		function changePassword(){
 			$settings = new Settings($this->dbo);
 			return $settings->changePassword();

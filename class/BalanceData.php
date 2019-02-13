@@ -1,6 +1,7 @@
 <?php
 
 	class BalanceData{
+		public $id;
 		public $b_date;
 		public $category;
 		public $amount;
