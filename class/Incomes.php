@@ -48,6 +48,14 @@ class Incomes{
 			}
 		}
 		
+		function deleteIncomes($id){
+			$connect = $this -> dbo;
+			$connect -> query ('SET NAMES utf8');
+			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
+			
+			$connect->query("DELETE FROM incomes WHERE id=$id");
+		}
+		
 		function addIncomesCategory(){
 			$connect = $this -> dbo;
 			$connect -> query ('SET NAMES utf8');
