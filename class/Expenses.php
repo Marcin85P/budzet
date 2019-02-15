@@ -1,8 +1,6 @@
 <?php
-
 	class Expenses{	
 		private $dbo = null;
-
 		function __construct($dbo)
 		{
 			$this->dbo = $dbo;
@@ -147,7 +145,6 @@
 				}
 			}
 		}
-
 		function addExpensesFunction(){
 			$amount = $_POST['amount'];
 			$amount = str_replace(",",".",$amount);
