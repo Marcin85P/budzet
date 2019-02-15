@@ -69,6 +69,16 @@ if(!isset($portal)) die();
 						include 'templates/balanceView.php';
 					break;
 					
+					case 'deleteIncomes':
+						$portal->deleteIncomes($_GET['idIncome']);
+						header('Location:index.php?action=tableView');
+					break;
+					
+					case 'deleteExpenses':
+						$portal->deleteExpenses($_GET['idExpense']);
+						header('Location:index.php?action=tableView');
+					break;
+					
 					case 'customView':
 						include 'templates/custom.php';
 					break;

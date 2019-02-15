@@ -1,8 +1,6 @@
 <?php
-
 	class Expenses{	
 		private $dbo = null;
-
 		function __construct($dbo)
 		{
 			$this->dbo = $dbo;
@@ -22,6 +20,14 @@
 			}
 			
 			$_SESSION['arrayCategoryExpenses'] = $arrayCategory;
+		}
+		
+		function deleteExpenses($id){
+			$connect = $this -> dbo;
+			$connect -> query ('SET NAMES utf8');
+			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
+			
+			$connect->query("DELETE FROM expenses WHERE id=$id");
 		}
 		
 		function loadPaymentMethods(){
@@ -139,7 +145,6 @@
 				}
 			}
 		}
-
 		function addExpensesFunction(){
 			$amount = $_POST['amount'];
 			$amount = str_replace(",",".",$amount);
