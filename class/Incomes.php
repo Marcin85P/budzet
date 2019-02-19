@@ -82,6 +82,44 @@ class Incomes{
 				}
 			}
 		}
+		
+		function editIncome($id){
+			$amount = $_POST['amount'];
+			$date = $_POST['date'];
+			$category = $_POST['choiceIncomes'];
+			$comment = $_POST['comment'];
+			
+			if(empty($amount)) {
+				return false;
+			}
+			else if(!is_numeric($amount)){
+				return false;
+			}
+			
+			if(empty($date)){
+				return false;
+			}
+			
+			$connect = $this -> dbo;
+			$connect -> query ('SET NAMES utf8');
+			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
+			
+			if(!$this->dbo){
+				return false;
+			}
+			else{
+				$result = $connect->query("SELECT id FROM incomes_category_assigned_to_users WHERE name = '$category' AND user_id = $_SESSION[id]");
+				
+				$line = $result->fetch_assoc();
+
+				if($connect->query("UPDATE incomes SET income_category_assigned_to_user_id = $line[id], amount = '$amount', date = '$date', comment = '$comment' WHERE id = '$id'")){
+					return ACTION_OK;
+				}
+				else{
+					return false;
+				}
+			}
+		}
 
 		function addIncomesFunction(){
 			$amount = $_POST['amount'];

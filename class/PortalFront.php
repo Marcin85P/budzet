@@ -105,6 +105,16 @@
 			return $load->loadPaymentMethods();
 		}
 		
+		function editIncomesAction($id){
+			$edit = new Incomes($this->dbo);
+			return $edit->editIncome($id);
+		}
+		
+		function editExpensesAction($id){
+			$edit = new Expenses($this->dbo);
+			return $edit->editExpense($id);
+		}
+		
 		function addIncomesCategory(){
 			$add = new Incomes($this->dbo);
 			return $add->addIncomesCategory();

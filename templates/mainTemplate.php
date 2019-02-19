@@ -79,6 +79,17 @@ if(!isset($portal)) die();
 						header('Location:index.php?action=tableView');
 					break;
 					
+					case 'editIncomes':
+						$portal->loadCategoryIncomes();
+						include 'templates/editIncome.php';
+					break;
+					
+					case 'editExpenses':
+						$portal->loadCategoryExpenses();
+						$portal->loadPaymentMethods();
+						include 'templates/editExpense.php';
+					break;
+					
 					case 'customView':
 						include 'templates/custom.php';
 					break;

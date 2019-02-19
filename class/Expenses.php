@@ -145,6 +145,48 @@
 				}
 			}
 		}
+		
+		function editExpense($id){
+			$amount = $_POST['amount'];
+			$date = $_POST['date'];
+			$payment_methods = $_POST['payment_methods'];
+			$category = $_POST['choiceExpenses'];
+			$comment = $_POST['comment'];
+			
+			if(empty($amount)) {
+				return false;
+			}
+			else if(!is_numeric($amount)){
+				return false;
+			}
+			
+			if(empty($date)){
+				return false;
+			}
+			
+			$connect = $this -> dbo;
+			$connect -> query ('SET NAMES utf8');
+			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
+			
+			if(!$this->dbo){
+				return false;
+			}
+			else{
+				$result = $connect->query("SELECT id FROM expenses_category_assigned_to_users WHERE name = '$category' AND user_id = $_SESSION[id]");
+				$line = $result->fetch_assoc();
+
+				$resultPay = $connect->query("SELECT id FROM payment_methods_assigned_to_users WHERE name_pay = '$payment_methods' AND user_id = $_SESSION[id]");
+				$linePay = $resultPay->fetch_assoc();
+
+				if($connect->query("UPDATE expenses SET expense_category_assigned_to_user_id = $line[id], payment_method_assigned_to_user_id = $linePay[id], amount = '$amount', date = '$date', comment = '$comment' WHERE id = '$id'")){
+					return ACTION_OK;
+				}
+				else{
+					return false;
+				}
+			}
+		}
+		
 		function addExpensesFunction(){
 			$amount = $_POST['amount'];
 			$amount = str_replace(",",".",$amount);

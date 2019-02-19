@@ -152,6 +152,26 @@
 				header('Location:index.php?action=settingsView');
 			break;
 			
+			case 'editIncomeAction':
+				switch($portal->editIncomesAction($_GET['idIncome'])):
+					case ACTION_OK:
+						header('Location:index.php?action=tableView');
+					return;
+				endswitch;
+				
+			header('Location:index.php?action=tableView');
+			break;
+			
+			case 'editExpenseAction':
+				switch($portal->editExpensesAction($_GET['idExpense'])):
+					case ACTION_OK:
+						header('Location:index.php?action=tableView');
+					return;
+				endswitch;
+				
+			header('Location:index.php?action=tableView');
+			break;
+			
 			case 'addIncomesCategory':
 				switch($portal->addIncomesCategory()):
 					case ACTION_OK:
