@@ -151,13 +151,8 @@
 		}
 		
 		function deleteExpenses($id){
-<<<<<<< HEAD
 			$delExp = new Expenses($this->dbo);
 			return $delExp->deleteExpenses($id);
-=======
-			$delExp = new Expenses($this->dbo);
-			return $delExp->deleteExpenses($id);
->>>>>>> af3ece84525fc1a3fc159fa6b97ab0e7ec27b2ba
 		}
 		
 		function changePassword(){

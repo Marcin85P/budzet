@@ -101,14 +101,6 @@ if(!isset($portal)) die();
 						include 'templates/settings.php';
 					break;
 					
-					case 'settingsCategory':
-						include 'templates/settingsCategoryIncomes.php';
-					break;
-					
-					case 'settingsCategoryExp':
-						include 'templates/settingsCategoryExpenses.php';
-					break;
-					
 					case 'showMain':
 					default:
 						include 'templates/innerContentDiv.php';
@@ -128,7 +120,7 @@ if(!isset($portal)) die();
 
 	<script src="jquery-3.3.1.min.js"></script>
 	
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 

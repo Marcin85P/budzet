@@ -239,13 +239,12 @@
 				switch($portal->deleteIncomesCategory()):
 					case ACTION_OK:
 						$_SESSION['passChange'] = true;
-						$portal->setMessage('Kategoria przychodu została usunięta.');
-						header('Location:index.php?action=settingsView');
+						$portal->loadCategoryIncomes();
+						include 'templates/ajaxIncomes.php';
 					return;
 					
 					case ACTION_FAILED:
-						$portal->setMessage('Nie wybrano kategorii.');
-						header('Location:index.php?action=settingsView');
+						include 'templates/ajaxIncomes.php';
 					return;
 					
 					endswitch;
@@ -255,13 +254,12 @@
 				switch($portal->deleteExpensesCategory()):
 					case ACTION_OK:
 						$_SESSION['passChange'] = true;
-						$portal->setMessage('Kategoria wydatku została usunięta.');
-						header('Location:index.php?action=settingsView');
+						$portal->loadCategoryExpenses();
+						include 'templates/ajaxExpenses.php';
 					return;
 					
 					case ACTION_FAILED:
-						$portal->setMessage('Nie wybrano kategorii.');
-						header('Location:index.php?action=settingsView');
+						include 'templates/ajaxExpenses.php';
 					return;
 					
 					endswitch;
@@ -271,13 +269,12 @@
 				switch($portal->deletePaymentMethod()):
 					case ACTION_OK:
 						$_SESSION['passChange'] = true;
-						$portal->setMessage('Forma płatności została usunięta.');
-						header('Location:index.php?action=settingsView');
+						$portal->loadPaymentMethods();
+						include 'templates/ajaxPayment.php';
 					return;
 					
 					case ACTION_FAILED:
-						$portal->setMessage('Nie wybrano formy płatności.');
-						header('Location:index.php?action=settingsView');
+						include 'templates/ajaxPayment.php';
 					return;
 					
 					endswitch;

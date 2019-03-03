@@ -79,11 +79,7 @@ if(!isset($_SESSION['zalogowany'])){
 									
 									echo "<tr id='lineI'>";
 									echo "<td style='min-width: 70px;'>$arrayExplode[0]</td>";
-<<<<<<< HEAD
 									echo "<td><a href='index.php?action=editIncomes&amountIncome=$arrayExplode[2]&dateIncome=$arrayExplode[0]&categoryIncome=$arrayExplode[1]&commentIncome=$arrayExplode[3]&idIncome=$arrayExplode[4]'><i title='Edytuj' style='color:#fff;' class='icon-pencil'></i></a></td>";
-=======
-									echo "<td><a href='index.php?action=editIncomes&amountIncome=$arrayExplode[2]&dateIncome=$arrayExplode[0]&categoryIncome=$arrayExplode[1]&commentIncome=$arrayExplode[3]&idIncome=$arrayExplode[4]'><i title='Edytuj' style='color:#fff;' class='icon-pencil'></i></a></td>";
->>>>>>> af3ece84525fc1a3fc159fa6b97ab0e7ec27b2ba
 									echo "<td><a href='index.php?action=deleteIncomes&idIncome=$arrayExplode[4]'><i title='Usuń' style='color:#fff;' class='icon-trash-1'></i></a></td>";
 									echo "<td style='min-width: 100px;'>$arrayExplode[1]</td>";
 									echo "<td style='min-width: 70px;'>$arrayExplode[2]</td>";
@@ -144,11 +140,7 @@ if(!isset($_SESSION['zalogowany'])){
 										
 										echo "<tr id='lineE'>";
 										echo "<td style='min-width: 70px;'>$arrayExplode[0]</td>";
-<<<<<<< HEAD
 										echo "<td><a href='index.php?action=editExpenses&amountExpense=$arrayExplode[2]&dateExpense=$arrayExplode[0]&paymentExpense=$arrayExplode[5]&categoryExpense=$arrayExplode[1]&commentExpense=$arrayExplode[3]&idExpense=$arrayExplode[4]'><i title='Edytuj' style='color:#fff;' class='icon-pencil'></i></a></td>";
-=======
-										echo "<td><a href=' '><i title='Edytuj' style='color:#fff;' class='icon-pencil'></i></a></td>";
->>>>>>> af3ece84525fc1a3fc159fa6b97ab0e7ec27b2ba
 										echo "<td><a href='index.php?action=deleteExpenses&idExpense=$arrayExplode[4]'><i title='Usuń' style='color:#fff;' class='icon-trash-1'></i></a></td>";
 										echo "<td style='min-width: 100px;'>$arrayExplode[1]</td>";
 										echo "<td style='min-width: 70px;'>$arrayExplode[5]</td>";

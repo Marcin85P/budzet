@@ -51,11 +51,11 @@
 			$connect -> query ('SET NAMES utf8');
 			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
 			
-			if(empty($_POST['deletePayment'])){
+			if(empty($_POST['valueKey'])){
 				return ACTION_FAILED;
 			}
 			else{
-				$payment_methods = mb_strtolower($_POST['deletePayment'], 'UTF-8');
+				$payment_methods = mb_strtolower($_POST['valueKey'], 'UTF-8');
 				$result = $connect->query("SELECT id FROM payment_methods_assigned_to_users WHERE name_pay = '$payment_methods' AND user_id = $_SESSION[id]");
 				$array_assoc = mysqli_fetch_assoc($result);
 				
@@ -73,11 +73,11 @@
 			$connect -> query ('SET NAMES utf8');
 			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
 			
-			if(empty($_POST['deleteExpensesCategory'])){
+			if(empty($_POST['valueKey'])){
 				return ACTION_FAILED;
 			}
 			else{
-				$expensesCategory = mb_strtolower($_POST['deleteExpensesCategory'], 'UTF-8');
+				$expensesCategory = mb_strtolower($_POST['valueKey'], 'UTF-8');
 				$result = $connect->query("SELECT id FROM expenses_category_assigned_to_users WHERE name = '$expensesCategory' AND user_id = $_SESSION[id]");
 				$array_assoc = mysqli_fetch_assoc($result);
 				

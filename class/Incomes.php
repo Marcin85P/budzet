@@ -29,11 +29,11 @@ class Incomes{
 			$connect -> query ('SET NAMES utf8');
 			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
 			
-			if(empty($_POST['deleteIncomesCategory'])){
+			if(empty($_POST['valueKey'])){
 				return ACTION_FAILED;
 			}
 			else{
-				$incomesCategory = mb_strtolower($_POST['deleteIncomesCategory'], 'UTF-8');
+				$incomesCategory = mb_strtolower($_POST['valueKey'], 'UTF-8');
 				$result = $connect->query("SELECT id FROM incomes_category_assigned_to_users WHERE name = '$incomesCategory' AND user_id = $_SESSION[id]");
 				$array_assoc = mysqli_fetch_assoc($result);
 				
