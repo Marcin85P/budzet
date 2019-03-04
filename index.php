@@ -250,6 +250,36 @@
 					endswitch;
 			break;
 			
+			case 'editIncomesCategory':
+				switch($portal->editIncomesCategory()):
+					case ACTION_OK:
+						$_SESSION['passChange'] = true;
+						$portal->loadCategoryIncomes();
+						include 'templates/ajaxIncomes.php';
+					return;
+					
+					case ACTION_FAILED:
+						include 'templates/ajaxIncomes.php';
+					return;
+					
+					endswitch;
+			break;
+			
+			case 'editPaymentMethods':
+				switch($portal->editPaymentMethods()):
+					case ACTION_OK:
+						$_SESSION['passChange'] = true;
+						$portal->loadPaymentMethods();
+						include 'templates/ajaxPayment.php';
+					return;
+					
+					case ACTION_FAILED:
+						include 'templates/ajaxPayment.php';
+					return;
+					
+					endswitch;
+			break;
+			
 			case 'deleteCategoryExp':
 				switch($portal->deleteExpensesCategory()):
 					case ACTION_OK:

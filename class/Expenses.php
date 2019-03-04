@@ -68,6 +68,25 @@
 			}
 		}
 		
+		function editPaymentMethods(){
+			$pay = mb_strtolower($_POST['valueKeyPay'], 'UTF-8');
+			$payNew = mb_strtolower($_POST['cos2'], 'UTF-8');
+			$connect = $this -> dbo;
+			$connect -> query ('SET NAMES utf8');
+			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
+			
+			$result = $connect->query("SELECT id FROM payment_methods_assigned_to_users WHERE name_pay = '$payNew' AND user_id = $_SESSION[id]");
+			$num = $result->num_rows;
+			
+			if($num<=0){
+				$connect -> query("UPDATE payment_methods_assigned_to_users SET name_pay = '$payNew' WHERE name_pay = '$pay' AND user_id = $_SESSION[id]");
+				return ACTION_OK;
+			}
+			else{
+				return ACTION_FAILED;
+			}
+		}
+		
 		function deleteExpensesCategory(){
 			$connect = $this -> dbo;
 			$connect -> query ('SET NAMES utf8');

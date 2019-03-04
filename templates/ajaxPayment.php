@@ -13,7 +13,7 @@
 								<span class='label'></span>
 								$arrayImplode[$i]
 								<span class='optionSetDelete' style='font-size:9px;'><i title='Usuń' class='icon-trash-1'></i></span>
-								<button class='optionSetEdit' id='payButt' style='font-size:9px;'><i title='Edytuj' class='icon-pencil'></i></button>
+								<span class='optionSetEdit' id='payButton' data-toggle='modal' data-target='#exampleModal9' style='font-size:9px;'><i title='Edytuj' class='icon-pencil'></i></span>
 						</label>
 					</div>";
 			}
@@ -22,39 +22,38 @@
 ?>
 
 <button class="settingButtonAddAndDelete" data-toggle="modal" data-target="#exampleModal6">Dodaj formę płatności</button>
-<div class="modal fade" id="exampleModal6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-	<div style="width:350px; margin-left:auto; margin-right:auto" class="modal-content">
-	  <div class="modal-header">
-		<h5 class="modal-title" id="exampleModalLabel">Dodaj formę płatności</h5>
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		  <span aria-hidden="true">&times;</span>
-		</button>
-	  </div>
-	  <div class="modal-body">
-		<form method="post" action='index.php?action=addPaymentMethod'>
-				<div class="fontel"><i class="icon-edit"></i></div>
-					<input type="text" style="min-width:250px; float:left;" placeholder="Wpisz nową formę płatności" name="checkAddPayment"/>
-				<input type="submit" style="float:left; margin-left:15px; width:285px" class="submitSet" value="Dodaj"/>
-		</form>
-	  </div>
-	</div>
-  </div>
-</div>
 
 <script>	
 $('.optionSetDelete').click(function() {
 	var selValue = $('input[name=inPay]:checked').val();
 	
-	$.ajax({
-		method:"post", 
-		url:'index.php?action=deletePaymentMethod', 
-		data: {
-			valueKey : selValue,
-		},
-		success: function(data){
-				$('#setPay').html(data);
-		  }
-	});
+	if(selValue == undefined){
+		$('#alertModalEmptyPay').modal('toggle');
+	}
+	else{
+		$.ajax({
+			method:"post", 
+			url:'index.php?action=deletePaymentMethod', 
+			data: {
+				valueKey : selValue,
+			},
+			success: function(data){
+					$('#setPay').html(data);
+			  }
+		});
+	}
 });
-</script>	
+</script>
+
+<div class="modal fade" id="alertModalEmptyPay" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-body" style="font-size: 15px;">
+		<?php echo  'Aby usunąć formę płatności, musisz ją najpierw zaznaczyć.';?>
+	  </div>
+	  <div class="modal-footer">
+		<button type="button" style="height:25px; width:80px; background:#2f4f4f; border:none; font-size:12px; padding:0;" class="btn btn-primary" data-dismiss="modal">OK</button>
+	  </div>
+	</div>
+  </div>
+</div>

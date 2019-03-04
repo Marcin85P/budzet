@@ -56,6 +56,30 @@ class Incomes{
 			$connect->query("DELETE FROM incomes WHERE id=$id");
 		}
 		
+		function editIncomesCategory(){
+			if(isset($_POST['valueKey'])&&isset($_POST['cos'])){
+				$cat = mb_strtolower($_POST['valueKey'], 'UTF-8');
+				$catNew = mb_strtolower($_POST['cos'], 'UTF-8');
+				$connect = $this -> dbo;
+				$connect -> query ('SET NAMES utf8');
+				$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
+				
+				$result = $connect->query("SELECT id FROM incomes_category_assigned_to_users WHERE name = '$catNew' AND user_id = $_SESSION[id]");
+				$num = $result->num_rows;
+				
+				if($num<=0){
+					$connect -> query("UPDATE incomes_category_assigned_to_users SET name = '$catNew' WHERE name = '$cat' AND user_id = $_SESSION[id]");
+					return ACTION_OK;
+				}
+				else{
+					return ACTION_FAILED;
+				}
+			}
+			else{
+				return ACTION_FAILED;
+			}
+		}
+		
 		function addIncomesCategory(){
 			$connect = $this -> dbo;
 			$connect -> query ('SET NAMES utf8');

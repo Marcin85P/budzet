@@ -160,6 +160,16 @@
 			return $settings->changePassword();
 		}
 		
+		function editIncomesCategory(){
+			$edit = new Incomes($this->dbo);
+			return $edit->editIncomesCategory();
+		}
+		
+		function editPaymentMethods(){
+			$edit = new Expenses($this->dbo);
+			return $edit->editPaymentMethods();
+		}
+		
 		function deleteIncomesCategory(){
 			$del = new Incomes($this->dbo);
 			return $del->deleteIncomesCategory();
