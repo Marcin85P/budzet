@@ -24,25 +24,25 @@
 <button class="settingButtonAddAndDelete" data-toggle="modal" data-target="#exampleModal6">Dodaj formę płatności</button>
 
 <script>	
-$('.optionSetDelete').click(function() {
-	var selValue = $('input[name=inPay]:checked').val();
-	
-	if(selValue == undefined){
-		$('#alertModalEmptyPay').modal('toggle');
-	}
-	else{
-		$.ajax({
-			method:"post", 
-			url:'index.php?action=deletePaymentMethod', 
-			data: {
-				valueKey : selValue,
-			},
-			success: function(data){
-					$('#setPay').html(data);
-			  }
-		});
-	}
-});
+	$('.optionSetDelete').click(function() {
+		var selValue = $('input[name=inPay]:checked').val();
+		
+		if(selValue == undefined){
+			$('#alertModalEmptyPay').modal('toggle');
+		}
+		else{
+			$.ajax({
+				method:"post", 
+				url:'index.php?action=deletePaymentMethod', 
+				data: {
+					valueKey : selValue,
+				},
+				success: function(data){
+						$('#setPay').html(data);
+				  }
+			});
+		}
+	});
 </script>
 
 <div class="modal fade" id="alertModalEmptyPay" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
