@@ -238,7 +238,6 @@
 			case 'deleteCategory':
 				switch($portal->deleteIncomesCategory()):
 					case ACTION_OK:
-						$_SESSION['passChange'] = true;
 						$portal->loadCategoryIncomes();
 						include 'templates/ajaxIncomes.php';
 					return;
@@ -253,7 +252,6 @@
 			case 'editIncomesCategory':
 				switch($portal->editIncomesCategory()):
 					case ACTION_OK:
-						$_SESSION['passChange'] = true;
 						$portal->loadCategoryIncomes();
 						include 'templates/ajaxIncomes.php';
 					return;
@@ -265,10 +263,31 @@
 					endswitch;
 			break;
 			
+			case 'editExpensesCategory':
+				switch($portal->editExpensesCategory()):
+					case ACTION_OK:
+						/*if($_SESSION['limit'] == true){
+							$portal->setLimit();
+							unset($_SESSION['limit']);
+						}*/
+						$portal->loadCategoryExpenses();
+						include 'templates/ajaxExpenses.php';
+					return;
+					
+					case ACTION_FAILED:
+						/*if($_SESSION['limit'] == true){
+							$portal->setLimit();
+							unset($_SESSION['limit']);
+						}*/
+						include 'templates/ajaxExpenses.php';
+					return;
+					
+					endswitch;
+			break;
+			
 			case 'editPaymentMethods':
 				switch($portal->editPaymentMethods()):
 					case ACTION_OK:
-						$_SESSION['passChange'] = true;
 						$portal->loadPaymentMethods();
 						include 'templates/ajaxPayment.php';
 					return;
@@ -283,7 +302,6 @@
 			case 'deleteCategoryExp':
 				switch($portal->deleteExpensesCategory()):
 					case ACTION_OK:
-						$_SESSION['passChange'] = true;
 						$portal->loadCategoryExpenses();
 						include 'templates/ajaxExpenses.php';
 					return;
@@ -298,7 +316,6 @@
 			case 'deletePaymentMethod':
 				switch($portal->deletePaymentMethod()):
 					case ACTION_OK:
-						$_SESSION['passChange'] = true;
 						$portal->loadPaymentMethods();
 						include 'templates/ajaxPayment.php';
 					return;

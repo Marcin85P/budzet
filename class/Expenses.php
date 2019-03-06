@@ -69,18 +69,60 @@
 		}
 		
 		function editPaymentMethods(){
-			$pay = mb_strtolower($_POST['valueKeyPay'], 'UTF-8');
-			$payNew = mb_strtolower($_POST['cos2'], 'UTF-8');
+			if(($_POST['valueKeyPay'] != 'undefine')&&($_POST['inPay'] != '')){
+				$pay = mb_strtolower($_POST['valueKeyPay'], 'UTF-8');
+				$payNew = mb_strtolower($_POST['inPay'], 'UTF-8');
+				$connect = $this -> dbo;
+				$connect -> query ('SET NAMES utf8');
+				$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
+				
+				$result = $connect->query("SELECT id FROM payment_methods_assigned_to_users WHERE name_pay = '$payNew' AND user_id = $_SESSION[id]");
+				$num = $result->num_rows;
+				
+				if($num<=0){
+					$connect -> query("UPDATE payment_methods_assigned_to_users SET name_pay = '$payNew' WHERE name_pay = '$pay' AND user_id = $_SESSION[id]");
+					return ACTION_OK;
+				}
+				else{
+					return ACTION_FAILED;
+				}
+			}
+			else{
+				return ACTION_FAILED;
+			}
+		}
+		/*
+		function setLimit(){
 			$connect = $this -> dbo;
 			$connect -> query ('SET NAMES utf8');
 			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
-			
-			$result = $connect->query("SELECT id FROM payment_methods_assigned_to_users WHERE name_pay = '$payNew' AND user_id = $_SESSION[id]");
-			$num = $result->num_rows;
-			
-			if($num<=0){
-				$connect -> query("UPDATE payment_methods_assigned_to_users SET name_pay = '$payNew' WHERE name_pay = '$pay' AND user_id = $_SESSION[id]");
-				return ACTION_OK;
+
+			if(empty()){
+				return ACTION_FAILED;
+			}else{
+				$limit = 123;
+				$connect->query("UPDATE expenses_category_assigned_to_users SET limit_exp = '$limit' WHERE name = 'wycieczka' AND user_id = $_SESSION[id]");
+			}
+		}*/
+		
+		function editExpensesCategory(){
+			if(($_POST['valueKeyExp'] != 'undefine')&&($_POST['inExp'] != '')){
+				$cat = mb_strtolower($_POST['valueKeyExp'], 'UTF-8');
+				$catNew = mb_strtolower($_POST['inExp'], 'UTF-8');
+				$connect = $this -> dbo;
+				$connect -> query ('SET NAMES utf8');
+				$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
+				
+				$result = $connect->query("SELECT id FROM expenses_category_assigned_to_users WHERE name = '$catNew' AND user_id = $_SESSION[id]");
+				$num = $result->num_rows;
+				
+				if($num<=0){
+					$connect -> query("UPDATE expenses_category_assigned_to_users SET name = '$catNew' WHERE name = '$cat' AND user_id = $_SESSION[id]");
+					return ACTION_OK;
+				}
+				else{
+					return ACTION_FAILED;
+				}
 			}
 			else{
 				return ACTION_FAILED;
@@ -127,7 +169,7 @@
 				
 				if($num<=0) {
 					$result->close;
-					$connect->query("INSERT INTO expenses_category_assigned_to_users VALUES (NULL, $_SESSION[id], '$category')");
+					$connect->query("INSERT INTO expenses_category_assigned_to_users VALUES (NULL, $_SESSION[id], '$category', '0')");
 					$result = $connect->query("SELECT id FROM expenses_category_assigned_to_users WHERE name = '$category' AND user_id = $_SESSION[id]");
 					
 					return ACTION_OK;

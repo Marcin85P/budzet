@@ -512,11 +512,11 @@ input[class=submitSet]{
 }
 
 .settingButtonAddAndDelete{
-	width:90%;
+	width:230px;
 	height:30px;
 	background-color:#2e303d;
 	border:none;
-	opacity:0.8;
+	opacity:0.6;
 	color: white;
 	font-size:12px;
 	margin-bottom:8px;
@@ -526,7 +526,7 @@ input[class=submitSet]{
 
 .settingButtonAddAndDelete:hover{
 	cursor:pointer;
-	opacity:1;
+	opacity:0.8;
 }
 
 .settingButtonAddAndDelete:focus{
@@ -652,12 +652,18 @@ input[type="radio"]:checked + .label:after {
 	padding-left:3px;
 	cursor:pointer;
 	display:none;
+	outline:none;
 }
 
 .optionSetEdit:hover{
 	background-color:#446b43;
 	opacity:0.9;
 	color:white;
+	outline:none;
+}
+
+.optionSetEdit:focus{
+	outline:none;
 }
 
 .incomesList:hover{

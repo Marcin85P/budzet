@@ -57,9 +57,9 @@ class Incomes{
 		}
 		
 		function editIncomesCategory(){
-			if(isset($_POST['valueKey'])&&isset($_POST['cos'])){
+			if(($_POST['valueKey'] != 'undefine')&&($_POST['inInc'] != '')){
 				$cat = mb_strtolower($_POST['valueKey'], 'UTF-8');
-				$catNew = mb_strtolower($_POST['cos'], 'UTF-8');
+				$catNew = mb_strtolower($_POST['inInc'], 'UTF-8');
 				$connect = $this -> dbo;
 				$connect -> query ('SET NAMES utf8');
 				$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');

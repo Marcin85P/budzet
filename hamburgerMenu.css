@@ -2,6 +2,7 @@
 {
 	background-color:#2e303d;
 	opacity:0.6;
+	transition: 1800ms;
 }
 
 .loginM
@@ -135,6 +136,10 @@ nav .menu-icon:hover{
 		padding-left:28px;
 	}
 	
+	#menu ul li a.home:hover{
+		padding-left:27px;
+	}
+	
 	nav .menu-icon {
 		display: inline-block;
 		border-left:1px solid #4f525f;
@@ -166,7 +171,7 @@ nav .menu-icon:hover{
 	}
 	
 	#menu ul li a.home:after{
-		content:' Strona główna';
+		content:'Strona główna';
 	}
 	
 	#menu ul li a.out{
