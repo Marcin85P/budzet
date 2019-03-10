@@ -18,7 +18,7 @@
 			<form action="index.php?action=addExpenses" method="post">
 			
 				<div class="fontel"><i class="icon-dollar"></i></div>
-				<input type="text" name="amount" placeholder="Kwota" 
+				<input type="text" id="amountExp" name="amount" placeholder="Kwota" 
 				value=
 					"<?php
 						if (isset($_SESSION['amount'])) {
@@ -60,8 +60,6 @@
 					<?php
 					$arrayPay = $_SESSION['arrayPay'];
 					
-					echo "<option value='empty' disabled selected hidden>Forma płatności</option>";
-					
 					for($i = 0; $i < count($arrayPay); $i++){
 						echo "<option value='$arrayPay[$i]'>$arrayPay[$i]</option>";
 					}
@@ -79,14 +77,18 @@
 				</div>
 
 				<div class="fontel"><i class="icon-edit"></i></div>
-				<select class="category" name="choiceExpenses"> 
+				<select class="category" name="choiceExpenses" id="expChoice" onchange="funkcja1()"> 
 					<?php 
 					$arrayCategory = $_SESSION['arrayCategoryExpenses'];
+					$limitCategory = $_SESSION['limit_exp'];
 					
 					echo "<option value='empty' disabled selected hidden>Kategoria</option>";
 					
 					for($i = 0; $i < count($arrayCategory); $i++){
-						echo "<option value='$arrayCategory[$i]'>$arrayCategory[$i]</option>";
+						if($limitCategory[$i] > 0)
+							echo "<option onclick='funkcja1()' style='color:#b22222; font-weight:700' value='$arrayCategory[$i]'>$arrayCategory[$i]</option>";
+						else
+							echo "<option onclick='funkcja1()' value='$arrayCategory[$i]'>$arrayCategory[$i]</option>";
 					}
 					unset($_SESSION['arrayCategoryExpenses']);
 					?>
@@ -117,3 +119,13 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	function funkcja1(){
+		var category = document.getElementById('expChoice').options[document.getElementById('expChoice').selectedIndex].value;
+		var amount = $('input[name=amount]').val();
+
+		alert(category);
+		alert(amount);
+	}
+</script>

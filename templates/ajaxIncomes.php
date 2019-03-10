@@ -42,8 +42,10 @@
 
 <!-- Set Values Income -->
 <script>
-	$('.optionSetEdit').click(function(){
-		var values = $('input[name=inInc]:checked').val();
-		$('#inputIncomes').val(values);
+	$(document).ready(function(){
+		$('input[name=inInc]').on("click", function(){
+			var values = $('input[name=inInc]:checked').val();
+			$('#inputIncomes').val(values);
+		});
 	});
 </script>

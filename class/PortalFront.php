@@ -169,11 +169,11 @@
 			$edit = new Expenses($this->dbo);
 			return $edit->editExpensesCategory();
 		}
-		/*
+		
 		function setLimit(){
 			$setLim = new Expenses($this->dbo);
 			return $setLim->setLimit();
-		}*/
+		}
 		
 		function editPaymentMethods(){
 			$edit = new Expenses($this->dbo);

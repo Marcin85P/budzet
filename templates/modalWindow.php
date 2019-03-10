@@ -95,11 +95,11 @@
 		</button>
 	  </div>
 	  <div class="modal-body">
-		<form method="post" action='index.php?action=addPaymentMethod'>
+		<form method="post">
 			<div class="fontel"><i class="icon-edit"></i></div>
 				<input type="text" style="min-width:250px; float:left;" id="inputExp" value="" name="checkAddExpense"/></br>
-				<label style="font-size:12px; float:left; margin:2px; margin-top:28px; margin-left:15px;"><input type="checkbox" name="checkboxInput" onclick="this.form.elements['limit'].disabled = !this.checked">Ustaw limit dla tej kategorii:</label>
-				<input type="text" style="width:170px; height:25px; float:left; margin:0; margin-left:15px; border-radius:3px;" name="limit" disabled>
+				<label style="font-size:12px; float:left; margin:2px; margin-top:28px; margin-left:15px;"><input type="checkbox" id="box" name="checkboxInput" onclick="this.form.elements['limit'].disabled = !this.checked"> Ustaw limit dla tej kategorii:</label>
+				<input type="number" id="idLimit" style="width:170px; height:25px; font-size:12px; float:left; margin:0; margin-left:15px; border:1px solid lightgrey; border-radius:3px;" name="limit" disabled>
 			<input type="submit" style="float:left; margin-left:15px; width:285px" data-dismiss="modal" id="exp" class="submitSetEdit" value="Edytuj"/>
 		</form>
 	  </div>

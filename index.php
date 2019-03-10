@@ -266,19 +266,14 @@
 			case 'editExpensesCategory':
 				switch($portal->editExpensesCategory()):
 					case ACTION_OK:
-						/*if($_SESSION['limit'] == true){
-							$portal->setLimit();
-							unset($_SESSION['limit']);
-						}*/
+						$portal->setLimit();
 						$portal->loadCategoryExpenses();
 						include 'templates/ajaxExpenses.php';
 					return;
 					
 					case ACTION_FAILED:
-						/*if($_SESSION['limit'] == true){
-							$portal->setLimit();
-							unset($_SESSION['limit']);
-						}*/
+						$portal->setLimit();
+						$portal->loadCategoryExpenses();
 						include 'templates/ajaxExpenses.php';
 					return;
 					

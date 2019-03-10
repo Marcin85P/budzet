@@ -12,14 +12,16 @@
 			$connect -> query ('SET NAMES utf8');
 			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
 			
-			$result = $connect->query("SELECT name FROM expenses_category_assigned_to_users WHERE user_id = $_SESSION[id]");
+			$result = $connect->query("SELECT name, limit_exp FROM expenses_category_assigned_to_users WHERE user_id = $_SESSION[id]");
 			
 			for($i=0; $i < $result->num_rows; $i++){
 				$category = mysqli_fetch_assoc($result);
 				$arrayCategory[$i] = $category['name'];
+				$arrayLimit[$i] = $category['limit_exp'];
 			}
 			
 			$_SESSION['arrayCategoryExpenses'] = $arrayCategory;
+			$_SESSION['limit_exp'] = $arrayLimit;
 		}
 		
 		function deleteExpenses($id){
@@ -91,24 +93,27 @@
 				return ACTION_FAILED;
 			}
 		}
-		/*
+		
 		function setLimit(){
-			$connect = $this -> dbo;
-			$connect -> query ('SET NAMES utf8');
-			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
-
-			if(empty()){
-				return ACTION_FAILED;
-			}else{
-				$limit = 123;
-				$connect->query("UPDATE expenses_category_assigned_to_users SET limit_exp = '$limit' WHERE name = 'wycieczka' AND user_id = $_SESSION[id]");
+			$limit = $_POST['valLimit'];
+			
+			if(isset($limit)){
+				$connect = $this -> dbo;
+				$connect -> query ('SET NAMES utf8');
+				$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
+			
+				$cat = mb_strtolower($_POST['inExp'], 'UTF-8');
+				$connect->query("UPDATE expenses_category_assigned_to_users SET limit_exp = '$limit' WHERE name = '$cat' AND user_id = $_SESSION[id]");
 			}
-		}*/
+		}
 		
 		function editExpensesCategory(){
 			if(($_POST['valueKeyExp'] != 'undefine')&&($_POST['inExp'] != '')){
 				$cat = mb_strtolower($_POST['valueKeyExp'], 'UTF-8');
 				$catNew = mb_strtolower($_POST['inExp'], 'UTF-8');
+				
+				$catNew = str_replace("_"," ",$catNew);
+				$cat = str_replace("_"," ",$cat);
 				$connect = $this -> dbo;
 				$connect -> query ('SET NAMES utf8');
 				$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
@@ -139,6 +144,8 @@
 			}
 			else{
 				$expensesCategory = mb_strtolower($_POST['valueKey'], 'UTF-8');
+				$expensesCategory = str_replace("_"," ",$expensesCategory);
+				
 				$result = $connect->query("SELECT id FROM expenses_category_assigned_to_users WHERE name = '$expensesCategory' AND user_id = $_SESSION[id]");
 				$array_assoc = mysqli_fetch_assoc($result);
 				
@@ -169,7 +176,7 @@
 				
 				if($num<=0) {
 					$result->close;
-					$connect->query("INSERT INTO expenses_category_assigned_to_users VALUES (NULL, $_SESSION[id], '$category', '0')");
+					$connect->query("INSERT INTO expenses_category_assigned_to_users VALUES (NULL, $_SESSION[id], '0', '$category')");
 					$result = $connect->query("SELECT id FROM expenses_category_assigned_to_users WHERE name = '$category' AND user_id = $_SESSION[id]");
 					
 					return ACTION_OK;

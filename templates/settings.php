@@ -68,19 +68,22 @@
 	$('#exp').click(function() {
 		var selValueExp = $('input[name=inExp]:checked').val();
 		var val3 = $('input[name=checkAddExpense]').val();
-		/*
+		var val3Replace = val3.replace(/_/g, " ");
+		
+		var setValLimit = $('input[name=limit]').val();
 		var checkbox = this.form.elements['limit'].disabled;
-		//var setValLimit = $('input[name=limit]').val();
-		if(checkbox == false){
-			<?php $_SESSION['limit'] = true;?>
-		}*/
+
+		if(checkbox == true){
+			setValLimit = 0;
+		}
 		
 		$.ajax({
 			method:"post", 
 			url:'index.php?action=editExpensesCategory', 
 			data: {
 				valueKeyExp : selValueExp,
-				inExp: val3,
+				inExp: val3Replace,
+				valLimit : setValLimit,
 			},
 			success: function(data){
 					$('#setExp').html(data);

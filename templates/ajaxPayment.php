@@ -42,8 +42,10 @@
 
 <!-- Set Values PayMet -->
 <script>
-	$('.optionSetEdit').click(function(){
-		var values = $('input[name=inPay]:checked').val();
-		$('#inputPay').val(values);
+	$(document).ready(function(){
+		$('input[name=inPay]').on("click", function(){
+			var values = $('input[name=inPay]:checked').val();
+			$('#inputPay').val(values);
+		});
 	});
 </script>
