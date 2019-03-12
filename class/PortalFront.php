@@ -160,6 +160,11 @@
 			return $settings->changePassword();
 		}
 		
+		function limitWindow(){
+			$limit = new Expenses($this->dbo);
+			return $limit->limitWindow();
+		}
+		
 		function editIncomesCategory(){
 			$edit = new Incomes($this->dbo);
 			return $edit->editIncomesCategory();

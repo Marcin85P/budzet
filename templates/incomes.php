@@ -19,7 +19,7 @@
 			<form action="index.php?action=addIncomes" method="post">
 			
 				<div class="fontel"><i class="icon-dollar"></i></div>
-				<input type="text" name="amount" placeholder="Kwota"
+				<input type="number" step=".01" name="amount" placeholder="Kwota"
 				value=
 				"<?php
 					if (isset($_SESSION['amount'])) {

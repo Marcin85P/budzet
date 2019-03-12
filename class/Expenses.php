@@ -255,6 +255,61 @@
 			}
 		}
 		
+		function limitWindow(){
+			$connect = $this -> dbo;
+			$connect -> query ('SET NAMES utf8');
+			$connect -> query ('SET CHARACTER_SET utf8_unicode_ci');
+			
+			if(!$this->dbo){
+				return false;
+			}
+			else{
+				if($_POST['amount'] > 0){
+					$_SESSION['amount'] = $_POST['amount'];
+				}else{
+					$_SESSION['amount'] = 0;
+				}
+				
+				$_SESSION['limit'] = $_POST['limit'];
+				$category = $_POST['category'];
+				$dateFirst = date('Ym01');
+				$dateLast = date('Ym31');
+				
+				$pytanie = "SELECT expenses.id, expenses.user_id, expenses.expense_category_assigned_to_user_id, expenses.amount, expenses.date, expenses_category_assigned_to_users.user_id,  expenses_category_assigned_to_users.name
+						FROM expenses, expenses_category_assigned_to_users
+							WHERE expenses.expense_category_assigned_to_user_id = expenses_category_assigned_to_users.id
+								AND expenses.user_id=$_SESSION[id]
+								AND expenses_category_assigned_to_users.name = '$category'
+								AND expenses.date 
+									BETWEEN $dateFirst
+									AND $dateLast";
+				
+				$result = $connect->query($pytanie);
+				$how_result = $result->num_rows;
+				
+				$sumOfTheMonth = 0;
+				
+				for($i = 0; $i < $how_result; $i++){
+					$amountQue = mysqli_fetch_assoc($result);
+					$sumOfTheMonth = $sumOfTheMonth + $amountQue['amount'];
+				}
+				
+				$_SESSION['howMuchWasSpent'] = number_format ( $sumOfTheMonth, 2, '.', '');
+				$howMuchWasLeft = $_SESSION['limit'] - $sumOfTheMonth;
+				
+				if($howMuchWasLeft < 0){
+					$_SESSION['howMuchWasLeft'] = 0;
+				}else{
+					$_SESSION['howMuchWasLeft'] = number_format ( $howMuchWasLeft, 2, '.', '');
+				}
+				
+				$sumAll = $sumOfTheMonth + $_SESSION['amount'];
+				$_SESSION['sumAll'] = number_format ( $sumAll, 2, '.', '');
+
+				return ACTION_OK;
+			}
+		}
+		
 		function addExpensesFunction(){
 			$amount = $_POST['amount'];
 			$amount = str_replace(",",".",$amount);

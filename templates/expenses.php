@@ -18,7 +18,7 @@
 			<form action="index.php?action=addExpenses" method="post">
 			
 				<div class="fontel"><i class="icon-dollar"></i></div>
-				<input type="text" id="amountExp" name="amount" placeholder="Kwota" 
+				<input type="number" step=".01" id="amountExp" name="amount" placeholder="Kwota" 
 				value=
 					"<?php
 						if (isset($_SESSION['amount'])) {
@@ -34,6 +34,10 @@
 							unset($_SESSION['e_amount']);
 						}
 					?>
+				</div>
+				
+				<div class="limitWin" name="limitWindow">
+					<?php include "templates/limitInfo.php";?>
 				</div>
 
 				<div class="fontel"><i class="icon-calendar"></i></div>
@@ -77,7 +81,7 @@
 				</div>
 
 				<div class="fontel"><i class="icon-edit"></i></div>
-				<select class="category" name="choiceExpenses" id="expChoice" onchange="funkcja1()"> 
+				<select class="category" name="choiceExpenses" id="expChoice" onchange="limit_function()"> 
 					<?php 
 					$arrayCategory = $_SESSION['arrayCategoryExpenses'];
 					$limitCategory = $_SESSION['limit_exp'];
@@ -85,10 +89,16 @@
 					echo "<option value='empty' disabled selected hidden>Kategoria</option>";
 					
 					for($i = 0; $i < count($arrayCategory); $i++){
-						if($limitCategory[$i] > 0)
-							echo "<option onclick='funkcja1()' style='color:#b22222; font-weight:700' value='$arrayCategory[$i]'>$arrayCategory[$i]</option>";
-						else
-							echo "<option onclick='funkcja1()' value='$arrayCategory[$i]'>$arrayCategory[$i]</option>";
+						if($limitCategory[$i] > 0){
+							echo "<option style='color:#b22222; font-weight:700' value='$arrayCategory[$i]'>$arrayCategory[$i]</option>";
+							$replaceCategory = str_replace(" ","_",$arrayCategory[$i]);
+							echo "<option style='display:none' id='$replaceCategory' value='$limitCategory[$i]'></option>";
+						}
+						else{
+							echo "<option value='$arrayCategory[$i]'>$arrayCategory[$i]</option>";
+							$replaceCategory = str_replace(" ","_",$arrayCategory[$i]);
+							echo "<option style='display:none' id='$replaceCategory' value='0'></option>";
+						}
 					}
 					unset($_SESSION['arrayCategoryExpenses']);
 					?>
@@ -121,11 +131,32 @@
 </div>
 
 <script>
-	function funkcja1(){
+	function limit_function(){
 		var category = document.getElementById('expChoice').options[document.getElementById('expChoice').selectedIndex].value;
-		var amount = $('input[name=amount]').val();
+		var categoryReplace = category.replace(/ /g, "_");
+		
+		var amount = 0;
+		amount = $('input[name=amount]').val();
+		var limit = $('#'+categoryReplace).val();
+		
+		$.ajax({
+			method:"post", 
+			url:'index.php?action=limitWindow', 
+			data: {
+				amount : amount,
+				limit: limit,
+				category: category,
+			},
+			success: function(data){
+					$('.limitWin').html(data);
+			  }
+		});
 
-		alert(category);
-		alert(amount);
+		if(limit > 0){
+			$("[name = 'limitWindow']").slideUp(100);
+			$("[name = 'limitWindow']").slideDown("fast");
+		}else{
+			$("[name = 'limitWindow']").slideUp("fast");
+		}
 	}
 </script>

@@ -322,6 +322,15 @@
 					endswitch;
 			break;
 			
+			case 'limitWindow':
+				switch($portal->limitWindow()):
+					case ACTION_OK:
+						include 'templates/limitInfo.php';
+					return;
+
+					endswitch;
+			break;
+			
 			case 'logout':
 				$portal->logout();
 				header('Location:index.php?action=showLoginForm');
